@@ -305,7 +305,7 @@ mvn license:format
 
 ### Create a release on DYNAMIC versionning system module
 
-For now, this is ONLY the use case for `creedengo` repository.
+For now, this is ONLY the use case for `creedengo-rules-specifications` repository.
 Why dynamic ? because the versionning is dynamic in this repository.
 No need to execute the 2 shell scripts (and commits / pushes) in "static" way to manage the versionning.
 
@@ -320,14 +320,14 @@ No need to execute the 2 shell scripts (and commits / pushes) in "static" way to
     4. **commit** these modifications
 2. **upgrade `README.md`** : upgrade if needed and if version compatibility matrix is described
 3. create locally a tag with the previous used version
-   1. **execute `git tag <X.Y.Z>`
+   1. execute `git tag <X.Y.Z>`
 4. push new tag created previously :
    1. locally, **go to and update `main`** branch
    2. **execute `git push --tags`** to push new previously created tag
 
 ### Create a release on STATIC versionning system module
 
-This is the use case for all plugin repositories except `creedengo` repository.
+This is the use case for all plugin repositories except `creedengo-rules-specifications` repository.
 
 1. IF **new release wanted** is a **major** or **minor** version (`X` or `Y` in `X.Y.Z`)
    1. **THEN** **modify the old version** to the new version in **all XML/YML files**
@@ -406,10 +406,10 @@ Examples :
 
 You need write rights to use Maven Central publish process (mainteners or core-team members).
 
-**Create a new release of `creedengo` repository** : please see above [HOWTO create a release](#howto-create-a-release-core-contributor-rights-needed).
+**Create a new release of `creedengo-rules-specifications` repository** : please see above [HOWTO create a release](#howto-create-a-release-core-contributor-rights-needed).
 
 Why create a new release before ?
-Because publish process of `creedengo-rules-specifications` on Maven Central needs a tag on `creedengo` repository.
+Because publish process of `creedengo-rules-specifications` on Maven Central needs a tag on `creedengo-rules-specifications` repository.
 
 ### Maven Central publish process
 
@@ -448,11 +448,15 @@ Launch GPG KeyChain software and follow these steps :
   - `Passphrase` / `password` : a passphrase to protect your private key
   - `expiration date` : never
   - other options : default values
-- publish your public key to a key server by clicking on `Send` button
-  - (if you open settings option menu, you can see that key server is `hkps://keys.openpgp.org`)
 - get public key (and private key if needed), by clicking on `Export` button
   - you can export public key to a local file (with `.asc` extension)
   - you can also export private key if option checked in export form
+- publish your public key to a key server by clicking on `Send` button
+  - (if you open settings option menu, you can see that key server is `hkps://keys.openpgp.org`)
+  - if error when publishing, try another server :
+    - https://keyserver.ubuntu.com/
+    - insert manually the public key
+    - then check the key existence with defined email
 
 #### How to install and use GPG ? METHOD 2 : command line tool
 
@@ -515,13 +519,13 @@ If we want to upgrade these keys, we need to generate new ones and reconfigure G
 `OSSRH_TOKEN` and `OSSRH_USERNAME` are used for communication between Github and Sonatype Nexus system for publish process to Maven Central.
 Nexus URL : https://s01.oss.sonatype.org/
 
-These variables are stored in Github Secrets available `Settings` tab of `creedengo` repository (Secrets and variables / Actions / Repository secrets)
+These variables are stored in Github Secrets available `Settings` tab of `creedengo-rules-specifications` repository (Secrets and variables / Actions / Repository secrets)
 
 #### Why change these variables ?
 
 Values are get from a specific Sonatype Nexus account.
 
-Actually, `creedengo` Sonatype Nexus account was used to generate values corresponding to `OSSRH_TOKEN` and `OSSRH_USERNAME` variables.
+Actually, `creedengo-rules-specifications` Sonatype Nexus account was used to generate values corresponding to `OSSRH_TOKEN` and `OSSRH_USERNAME` variables.
 
 If we want use another account, we need to change these values by generating new ones on this new account.
 
@@ -533,7 +537,7 @@ If we want use another account, we need to change these values by generating new
 4. Go to `User Token` sub-tab present in top list (`Summary` value is selected by default)
 5. Click on `Access User Token` button
 6. New values will be generated and displayed
-7. Copy these values and paste them in Github Secrets in `creedengo` repository, respectively in `OSSRH_TOKEN` variable (the password) and `OSSRH_USERNAME` variable (the username)
+7. Copy these values and paste them in Github Secrets in `creedengo-rules-specifications` repository, respectively in `OSSRH_TOKEN` variable (the password) and `OSSRH_USERNAME` variable (the username)
 8. Check publish process with a new release version (see above [HOWTO configure publish process on Maven Central](#howto-publish-a-new-version-of-creedengo-rules-specifications-on-maven-central))
 
 # CONTACT
