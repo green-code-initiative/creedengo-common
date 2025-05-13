@@ -18,7 +18,7 @@
   - [Join The Project Team](#join-the-project-team)
   - [Attribution](#attribution)
 
-First off, thanks for taking the time to contribute! ❤️
+First of all, thanks for taking the time to contribute! ❤️
 
 All types of contributions are encouraged and valued. See the Table of Contents above for different ways to help and details about how this project handles them. Please make sure to read the relevant section before making your contribution. It will make it a lot easier for us maintainers and smooth out the experience for all involved. The community looks forward to your contributions. 🎉
 
@@ -84,7 +84,7 @@ We use GitHub issues to track bugs and errors. If you run into an issue with the
 - Please provide as much context as possible and describe the *reproduction steps* that someone else can follow to recreate the issue on their own. This usually includes your code. For good bug reports you should isolate the problem and create a reduced test case.
 - Provide the information you collected in the previous section.
 
-Once it's filed, the project team will label the issue accordingly.
+Once it is filled, the project team will label the issue accordingly.
 When you create an issue, a template is given to you to help you filling it.
 
 ### Suggesting Enhancements
@@ -112,9 +112,9 @@ When you create an issue, a template is given to you.
 
 ### How Do I Suggest a New Rule ?
 
-- first of all, check if rule isn't existing yet (in `RULES.md` or in Sonarqube native rules list)
-- if it isn't exist, create a new issue in `creedengo` repository : choose `new rule template`
-- fill the template and submit issue
+- first of all, check if a similar rule already exists (in `RULES.md` or in Sonarqube native rules list)
+- if it doesn't exist, create a new issue in `creedengo` repository : choose `new rule template`
+- fill the template and submit the issue
 
 ### Your First Code Contribution
 
@@ -124,7 +124,7 @@ Please check [Starter pack](https://github.com/green-code-initiative/creedengo-c
 
 Please make a Pull Request with modifications.
 
-## Styleguides
+## Style guides
 
 Please check :
 

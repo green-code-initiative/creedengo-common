@@ -28,7 +28,7 @@
 
 # Basic Explanations
 
-In order to develop a Sonarqube Plugin in Open source for creedengo, two basics should have been understood :
+In order to develop a Sonarqube Plugin in Open source for creedengo, the following basics should have been understood :
 
 - How to develop a Sonarqube plugin
 - Understand and work with the Gitflow
@@ -36,17 +36,17 @@ In order to develop a Sonarqube Plugin in Open source for creedengo, two basics 
 
 ## Sonarqube Plugin
 
-Here is official documentation to understand how to develop a sonar plugin : <https://docs.sonarqube.org/latest/extend/developing-plugin/>
-But ... we are going to help you more specifically for `creedengo` project in following sections.
+Here is the official documentation to understand how to develop a sonar plugin : <https://docs.sonarqube.org/latest/extend/developing-plugin/>
+But ... we are going to help you more specifically for `creedengo` project in the following sections.
 
 ### How a SonarQube plugin works
 
 Code is parsed to be transformed as an [AST (Abstract Syntax Tree)](https://en.wikipedia.org/wiki/Abstract_syntax_tree). This AST will allow you to access one or more nodes of your code.
-For example, you’ll be able to access of all the `for` loops, to explore content etc.
+For example, you’ll be able to access all of the `for` loops, to explore content etc.
 
 To better understand AST structure, you can use the [AST Explorer](https://astexplorer.net/) and select the language of the code you want to explore.
 
-The JavaScript Sonar plugin works differently because it doesn't parse the code to transform it into an AST itself, it use the ESLint engine which will do it itself ([More information here](https://github.com/green-code-initiative/creedengo-javascript/blob/main/CONTRIBUTING.md)). The good part is that it means that all creedengo JavaScript rules are made available both to Sonar and to [ESLint](https://eslint.org/) through an [creedengo ESLint plugin](https://www.npmjs.com/package/@creedengo/eslint-plugin).
+The JavaScript Sonar plugin works differently because it doesn't parse the code to transform it into an AST itself, it uses the ESLint engine which does the parsing by itself ([More information here](https://github.com/green-code-initiative/creedengo-javascript/blob/main/CONTRIBUTING.md)). The good part is that it means that all creedengo JavaScript rules are made available both to Sonar and to [ESLint](https://eslint.org/) through an [creedengo ESLint plugin](https://www.npmjs.com/package/@creedengo/eslint-plugin).
 
 ## Gitflow
 
@@ -124,7 +124,7 @@ Example for Java plugin (with SSH) :
 git clone git@github.com:green-code-initiative/creedengo-java.git
 ```
 
-*WARNING* : if you are a new contributor (an not identified project `maintainer`), you have to use FORK / Pull Request System like explained here <https://github.com/green-code-initiative/creedengo-common/blob/main/doc/HOWTO.md#howto-develop-in-open-source-mode>
+*WARNING* : if you are a new contributor (and not identified project `maintainer`), you have to use FORK / Pull Request System like explained here <https://github.com/green-code-initiative/creedengo-common/blob/main/doc/HOWTO.md#howto-develop-in-open-source-mode>
 
 ## Start local environment
 
@@ -133,8 +133,8 @@ You will find all steps to start and configure your local Sonarqube dev Environm
 - 1st step - build your local plugin: <https://github.com/green-code-initiative/creedengo-common/blob/main/doc/HOWTO.md#howto-build-the-sonarqube-creedengo-plugins>
 - 2nd step - launch local Sonarqube (with installation of previous local plugin built) : <https://github.com/green-code-initiative/creedengo-common/blob/main/doc/HOWTO.md#howto-install-sonarqube-dev-environment>
 - 3rd step - check that local environment is running perfectly : choose one of repositories with suffix "test-project" (ex : <https://github.com/green-code-initiative/creedengo-java-test-project/tree/main>)
-  - next, launch script `tool_send_to_sonar.sh` (using previous secruitty token created on the first step)
-  - finally, open local SonarQube GUI (<http://localhost:9000>) to verify if alone project raises creedengo errors
+  - next, launch script `tool_send_to_sonar.sh` (using previous security token created on the first step)
+  - finally, open local SonarQube GUI (<http://localhost:9000>) to verify if the project alone raises creedengo errors
 
 # Implement a new rule
 
@@ -214,7 +214,7 @@ Push your branch :
 git push origin <rule_id>-<language>
 ```
 
-You may have to log with your account : <https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token>
+You may have to login with your account : <https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token>
 
 ## Open pull request
 
@@ -228,7 +228,7 @@ If you want to be reviewed, review others... It's a win/win situation
 ## Validation of a PR
 
 Validate your PR or ask to someone who have the permissions to validate your PR.
-Once PR validated, a github workflow is automatically launched. Thus, the new implemented code is also scan with our internal Sonar to check the implemented code quality.
+Once PR validated, a github workflow is automatically launched. Thus, the new implemented code is also scanned with our internal Sonar to check the implemented code quality.
 Here is the SonarQube : <https://sonarcloud.io/organizations/green-code-initiative/projects>
 
 ## Close your rule

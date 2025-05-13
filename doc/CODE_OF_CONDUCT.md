@@ -12,7 +12,7 @@
 
 In the interest of fostering an open and welcoming environment, we as
 contributors and maintainers pledge to make participation in our project and
-our community a harassment-free experience for everyone, regardless of age, body
+our community a harrassment-free experience for everyone, regardless of age, body
 size, disability, ethnicity, sex characteristics, gender identity and expression,
 level of experience, education, socio-economic status, nationality, personal
 appearance, race, religion, or sexual identity and orientation.
@@ -35,7 +35,7 @@ Examples of unacceptable behavior include:
 - The use of sexualized language or imagery, and sexual attention or
   advances
 - Trolling, insulting or derogatory comments, and personal or political attacks
-- Public or private harassment
+- Public or private harrassment
 - Publishing others' private information, such as a physical or email
   address, without their explicit permission
 - Other conduct which could reasonably be considered inappropriate in a
@@ -63,7 +63,7 @@ representative at an online or offline event.
 
 ## Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be
+Instances of abusive, harrassing, or otherwise unacceptable behavior may be
 reported to the community leaders responsible for enforcement with [form contact](https://green-code-initiative.org/).
 All complaints will be reviewed and investigated promptly and fairly.
 
