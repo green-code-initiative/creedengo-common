@@ -19,6 +19,7 @@
     - [HOWTO develop in open-source mode](#howto-develop-in-open-source-mode)
       - [Maintainer, write permission](#maintainer-write-permission)
       - [Contributor, NO write permissions](#contributor-no-write-permissions)
+    - [HOWTO create and implement a new rule](#howto-create-and-implement-a-new-rule)
     - [HOWTO debug a rule (with logs)](#howto-debug-a-rule-with-logs)
     - [HOWTO Deprecate an existing rule](#howto-deprecate-an-existing-rule)
       - [STEP 1 : deprecate rule](#step-1--deprecate-rule)
@@ -253,6 +254,27 @@ To contribute with FORK / PR system, you have to :
 - once all is ok, you can create a new Pull Request to original Project by clicking on the new appeared message with "Compare & pull request" button
   - a new PR form is displayed and you can fill it
 - *TIPS* : when you have already created the PR to the original project, and you improve the branch of your forked project (with new commits), the PR in original project is automatically updated. Please mark this PR as "Draft", meaning you are still working on it (top-right link "convert to draft" in PR inside original project)
+
+### HOWTO create and implement a new rule
+
+You will need to clone 3 repos :
+
+* [creedengo-rules-specifications](https://github.com/green-code-initiative/creedengo-rules-specifications.git)
+  * For a rule that already exists (existing ID) but is not described for the target language:
+    * create a subfolder with the language name
+    * create an ASCIIDOC file in it with the rule description for the chosen language, along with an example of KO code and an example of OK code.
+    * For an example, you can refer to the rule EC31 for java: : ecoCode/ecocode-rules-specifications/src/main/rules/EC31/java/EC31.asciidoc
+  * For a rule that doesn't exist yet, determine an ID (random number between 1000 and 1500) that doesn't yet exist
+    * add a JSON metadata file to describe the rule, its remediation cost, its tags, etc. (follow the example of other rules)
+    * add the sub-tree structure as described for an already existing rule.
+  * run 'mvn install' on this project to have the dependency in your local maven cache. This command will also generate the html file that's required when your build your sonar plugin.
+* creedengo-{lang} : to implement the rule for a target language
+  * in the implementation, don't forget to add the @rule(key = “ECxx”) annotation for Java, PHP, Python (for other languages like HTML, JS, etc ... I don't know)
+modify this project's pom.xml (but don't commit it) to target the previous module packaged in the local maven cache
+  * create a mvn package to produce the version of the plugin embedding the implementation and specification of the rule concerned
+    * exemple for creedengo-java/pom.xml : <creedengo-rules-specifications.version>main-SNAPSHOT</creedengo-rules-specifications.version>
+    * It's ready to be tested in your local instance of SonarQube !
+* creedengo-{lang}-test-project : to add a real-life example of an outcome that a sonar analysis should detect. (For Java and Javascript the test project is included in the subfolder of the lang git project). 
 
 ### HOWTO debug a rule (with logs)
 
