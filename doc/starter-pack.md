@@ -268,5 +268,5 @@ Here is the SonarQube: <https://sonarcloud.io/organizations/green-code-initiativ
 
 ## Close your rule
 
-Once your PR is validated, your rule integrates creedengo. In <https://github.com/orgs/green-code-initiative/projects/2>, move it from the "In Progress" column to the "Done" column.
+Once your PR is validated, your rule integrates creedengo. In <https://github.com/orgs/green-code-initiative/projects/1>, move it from the "WIP" column to the "Done" column.
 Well done.
