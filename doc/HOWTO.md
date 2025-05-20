@@ -160,9 +160,9 @@ Instead of login+password authentication, this token can now be used as value fo
 
 ##### Initialize default profiles for `creedengo` plugins
 
-- use tool `install_profile.sh` in `creedengo-common` repository (inside directory `tools/rules_config`)
-  - if you want, you can check default configuration of this tool in `_config.sh` file
-- launch followed command : `./install_profile.sh <MY_SONAR_PORT> <MY_SONAR_TOKEN>`
+In creedengo-common repository (inside directory tools/rules_config) launch followed command : ./install_profile.sh <MY_SONAR_PORT> <MY_SONAR_TOKEN> 
+
+You can check default configuration of this tool in _config.sh file 
 
 After this step, all code source for your language will be analyzed with your new Profile (and its activated plugins rules).
 
