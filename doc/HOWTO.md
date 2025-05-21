@@ -261,20 +261,19 @@ You will need to clone 3 repos :
 
 * [creedengo-rules-specifications](https://github.com/green-code-initiative/creedengo-rules-specifications.git)
   * For a rule that already exists (existing ID) but is not described for the target language:
-    * create a subfolder with the language name
+    * create a subfolder with the language name inside the rule folder 
     * create an ASCIIDOC file in it with the rule description for the chosen language, along with an example of KO code and an example of OK code.
-    * For an example, you can refer to the rule EC31 for java: : ecoCode/ecocode-rules-specifications/src/main/rules/EC31/java/EC31.asciidoc
+    * For an example, you can refer to the rule EC31 for java: : green-code-initiative/creedengo-rules-specifications/src/main/rules/GCI31/java/GCI31.asciidoc
   * For a rule that doesn't exist yet, determine an ID (random number between 1000 and 1500) that doesn't yet exist
     * add a JSON metadata file to describe the rule, its remediation cost, its tags, etc. (follow the example of other rules)
     * add the sub-tree structure as described for an already existing rule.
   * run 'mvn install' on this project to have the dependency in your local maven cache. This command will also generate the html file that's required when your build your sonar plugin.
 * creedengo-{lang} : to implement the rule for a target language
-  * in the implementation, don't forget to add the @rule(key = “ECxx”) annotation for Java, PHP, Python (for other languages like HTML, JS, etc ... I don't know)
-modify this project's pom.xml (but don't commit it) to target the previous module packaged in the local maven cache
-  * create a mvn package to produce the version of the plugin embedding the implementation and specification of the rule concerned
-    * exemple for creedengo-java/pom.xml : <creedengo-rules-specifications.version>main-SNAPSHOT</creedengo-rules-specifications.version>
+  * change the version number in pom.xml of your sonar project : exemple for creedengo-java/pom.xml : <creedengo-rules-specifications.version>main-SNAPSHOT</creedengo-rules-specifications.version> to target your local build
+  * in the implementation, don't forget to add the @rule(key = “GCIxx”) annotation for Java, PHP, Python
+  * use the command "mvn package" to produce the version of the plugin embedding the implementation and specifications of the rule concerned
     * It's ready to be tested in your local instance of SonarQube !
-* creedengo-{lang}-test-project : to add a real-life example of an outcome that a sonar analysis should detect. (For Java and Javascript the test project is included in the subfolder of the lang git project). 
+* creedengo-{lang}-test-project : to add a real-life example of an outcome that a sonar analysis should detect. (For Java ,Javascript and Python the test project is included in the subfolder of the lang git project). 
 
 ### HOWTO debug a rule (with logs)
 
