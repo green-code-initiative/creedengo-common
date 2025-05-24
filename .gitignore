@@ -1,2 +1,54 @@
-.*
-!.gitignore
+# Build outputs
+build/
+out/
+target/
+bin/
+*.class
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+*.sublime-workspace
+*.sublime-project
+.project
+.classpath
+.settings/
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.swp
+*.swo
+*.tmp
+*.log
+
+# Dependencies
+node_modules/
+.gradle/
+.mvn/
+
+# Compiled files
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Keep source files
+!*.java
+!*.kt
+!*.gradle
+!*.gradle.kts
+!*.xml
+!*.properties
+!*.json
+!*.yml
+!*.yaml
+!*.md
+!*.txt
+!*.sh
+!*.bat
