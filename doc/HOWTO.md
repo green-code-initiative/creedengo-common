@@ -30,8 +30,12 @@
     - [Create a release on STATIC versionning system module](#create-a-release-on-static-versionning-system-module)
     - [New release from scratch](#new-release-from-scratch)
     - [New release of existing plugin](#new-release-of-existing-plugin)
-  - [HOWTO publish a new version of creedengo-rules-specifications on Maven Central](#howto-publish-a-new-version-of-creedengo-rules-specifications-on-maven-central)
+  - [HOWTO publish a new version of a plugin in Sonarqueb Marketplace](#howto-publish-a-new-version-of-a-plugin-in-sonarqueb-marketplace)
     - [Requirements](#requirements-2)
+    - [Give a new Pull Request to SonarSource](#give-a-new-pull-request-to-sonarsource)
+    - [Automatic publish on SonarQube Marketplace](#automatic-publish-on-sonarqube-marketplace)
+  - [HOWTO publish a new version of creedengo-rules-specifications on Maven Central](#howto-publish-a-new-version-of-creedengo-rules-specifications-on-maven-central)
+    - [Requirements](#requirements-3)
     - [Maven Central publish process](#maven-central-publish-process)
 - [CONFIGURATION](#configuration)
   - [HOWTO configure publish system on Maven Central](#howto-configure-publish-system-on-maven-central)
@@ -405,6 +409,20 @@ Examples :
 - process : [SonarSource documentation - new release](https://community.sonarsource.com/t/deploying-to-the-marketplace/35236#announcing-new-releases-2)
 - documentation : [README.md](https://github.com/SonarSource/sonar-update-center-properties/blob/master/README.md)
 - example : [PR example](https://github.com/SonarSource/sonar-update-center-properties/pull/468)
+
+## HOWTO publish a new version of a plugin in Sonarqueb Marketplace
+
+### Requirements
+
+You need a new release version of the plugin available on GitHub (with a tag).
+
+### Give a new Pull Request to SonarSource
+
+Next, we need to create a new Pull Request on [SonarSource/sonar-update-center-properties](https://github.com/SonarSource/sonar-update-center-properties) like this example : [PR example](https://github.com/SonarSource/sonar-update-center-properties/pull/687).
+
+### Automatic publish on SonarQube Marketplace
+
+Once this Pull Request is merged, the new version of the plugin will be automatically published on SonarQube Marketplace.
 
 ## HOWTO publish a new version of creedengo-rules-specifications on Maven Central
 
