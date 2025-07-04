@@ -30,7 +30,7 @@
     - [Create a release on STATIC versionning system module](#create-a-release-on-static-versionning-system-module)
     - [New release from scratch](#new-release-from-scratch)
     - [New release of existing plugin](#new-release-of-existing-plugin)
-  - [HOWTO publish a new version of a plugin in Sonarqueb Marketplace](#howto-publish-a-new-version-of-a-plugin-in-sonarqueb-marketplace)
+  - [HOWTO publish a new version of a plugin in SonarQube Marketplace](#howto-publish-a-new-version-of-a-plugin-in-sonarqube-marketplace)
     - [Requirements](#requirements-2)
     - [Give a new Pull Request to SonarSource](#give-a-new-pull-request-to-sonarsource)
     - [Automatic publish on SonarQube Marketplace](#automatic-publish-on-sonarqube-marketplace)
@@ -410,7 +410,7 @@ Examples :
 - documentation : [README.md](https://github.com/SonarSource/sonar-update-center-properties/blob/master/README.md)
 - example : [PR example](https://github.com/SonarSource/sonar-update-center-properties/pull/468)
 
-## HOWTO publish a new version of a plugin in Sonarqueb Marketplace
+## HOWTO publish a new version of a plugin in SonarQube Marketplace
 
 ### Requirements
 
