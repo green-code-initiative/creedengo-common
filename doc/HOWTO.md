@@ -316,7 +316,9 @@ mvn license:format
 ### Create a release on DYNAMIC versionning system module
 
 For now, this is ONLY the use case for `creedengo-rules-specifications` repository.
+
 Why dynamic ? because the versionning is dynamic in this repository.
+
 No need to execute the 2 shell scripts (and commits / pushes) in "static" way to manage the versionning.
 
 1. **upgrade `CHANGELOG.md`** : add release notes for next release
@@ -369,7 +371,7 @@ This is the use case for all plugin repositories except `creedengo-rules-specifi
    2. **execute `git push --tags`** to push new previously created tag
    3. **check Action** launch and result on new tag
 
-`## HOWTO publish new release on SonarQube Marketplace
+## HOWTO publish new release on SonarQube Marketplace
 
 ### New release from scratch
 
