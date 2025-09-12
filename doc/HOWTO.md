@@ -28,6 +28,7 @@
   - [HOWTO create a release (core-contributor rights needed)](#howto-create-a-release-core-contributor-rights-needed)
     - [Create a release on DYNAMIC versionning system module](#create-a-release-on-dynamic-versionning-system-module)
     - [Create a release on STATIC versionning system module](#create-a-release-on-static-versionning-system-module)
+  - [HOWTO publish new release on SonarQube Marketplace](#howto-publish-new-release-on-sonarqube-marketplace)
     - [New release from scratch](#new-release-from-scratch)
     - [New release of existing plugin](#new-release-of-existing-plugin)
   - [HOWTO publish a new version of a plugin in SonarQube Marketplace](#howto-publish-a-new-version-of-a-plugin-in-sonarqube-marketplace)
@@ -421,6 +422,14 @@ You need a new release version of the plugin available on GitHub (with a tag).
 ### Give a new Pull Request to SonarSource
 
 Next, we need to create a new Pull Request on [SonarSource/sonar-update-center-properties](https://github.com/SonarSource/sonar-update-center-properties) like this example : [PR example](https://github.com/SonarSource/sonar-update-center-properties/pull/687).
+
+Some rules to respect for a new PR :
+- update "sqs" (SonarQube Developer Edition) and "sqcb" (SonarQube Community Build) fields
+- only the last version must use "LATEST" value for sqs and sqcb fields
+- use [download link](https://www.sonarsource.com/products/sonarqube/downloads/) to get versions value
+  - sqs (SonarQube Developer Edition)
+  - sqcb (SonarQube Community Build)
+  - sqversions : deprecated field
 
 ### Automatic publish on SonarQube Marketplace
 
