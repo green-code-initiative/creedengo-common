@@ -123,6 +123,8 @@ If there is only postgres, check the logs:
 Wait until "Sonarqube is operational" log appears.
 And next, your SonarQube instance is ready to use.
 
+You can now type in "CTRL-C" to exit logs.
+
 ##### Errors
 
 If you have this error on run:
