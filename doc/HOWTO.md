@@ -120,6 +120,11 @@ If there is only postgres, check the logs:
 ./tool_docker-logs.sh
 ```
 
+Wait until "Sonarqube is operational" log appears.
+And next, your SonarQube instance is ready to use.
+
+##### Errors
+
 If you have this error on run:
 `web_1 | [1]: max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]`
 you can allocate more virtual memory:
