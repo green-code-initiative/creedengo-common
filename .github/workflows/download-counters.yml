@@ -20,4 +20,4 @@ jobs:
         working-directory: tools/download_counters
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: bash count.sh
+        run: bash count.sh >> $GITHUB_STEP_SUMMARY
