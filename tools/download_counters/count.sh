@@ -11,13 +11,14 @@ REPOS=(
     "green-code-initiative/creedengo-python"
 )
 
-# Check if GitHub token is provided as an argument
-if [ -z "$1" ]; then
-  echo "Usage: $0 <github_token>"
-  exit 1
+# Check if GitHub token is provided (from env or argument)
+if [ -z "$GITHUB_TOKEN" ]; then
+  if [ -z "$1" ]; then
+    echo "Usage: $0 <github_token> or set GITHUB_TOKEN environment variable"
+    exit 1
+  fi
+  GITHUB_TOKEN=$1
 fi
-
-GITHUB_TOKEN=$1
 
 # Temporary file to store results
 TEMP_FILE=$(mktemp)
