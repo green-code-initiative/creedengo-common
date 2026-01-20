@@ -36,7 +36,7 @@
     - [Requirements](#requirements-2)
     - [Give a new Pull Request to SonarSource](#give-a-new-pull-request-to-sonarsource)
     - [Automatic publish on SonarQube Marketplace](#automatic-publish-on-sonarqube-marketplace)
-  - [HOWTO publish a new version of creedengo-rules-specifications on Maven Central](#howto-publish-a-new-version-of-creedengo-rules-specifications-on-maven-central)
+  - [HOWTO publish a new version of creedengo-rules-specifications and and creedengo-integration-test on Maven Central](#howto-publish-a-new-version-of-creedengo-rules-specifications-and-and-creedengo-integration-test-on-maven-central)
     - [Requirements](#requirements-3)
     - [Maven Central publish process](#maven-central-publish-process)
 - [CONFIGURATION](#configuration)
@@ -318,7 +318,7 @@ mvn license:format
 
 ### Create a release on DYNAMIC versionning system module
 
-For now, this is ONLY the use case for `creedengo-rules-specifications` repository.
+For now, this is ONLY the use case for `creedengo-rules-specifications` and `creedengo-integration-test` repositories.
 
 Why dynamic ? because the versionning is dynamic in this repository.
 
@@ -342,7 +342,7 @@ No need to execute the 2 shell scripts (and commits / pushes) in "static" way to
 
 ### Create a release on STATIC versionning system module
 
-This is the use case for all plugin repositories except `creedengo-rules-specifications` repository.
+This is the use case for all plugin repositories except `creedengo-rules-specifications` and `creedengo-integration-test` repositories  .
 
 1. IF **new release wanted** is a **major** or **minor** version (`X` or `Y` in `X.Y.Z`)
    1. **THEN** **modify the old version** to the new version in **all XML/YML files**
@@ -437,16 +437,16 @@ Some rules to respect for a new PR :
 
 Once this Pull Request is merged, the new version of the plugin will be automatically published on SonarQube Marketplace.
 
-## HOWTO publish a new version of creedengo-rules-specifications on Maven Central
+## HOWTO publish a new version of creedengo-rules-specifications and and creedengo-integration-test on Maven Central
 
 ### Requirements
 
 You need write rights to use Maven Central publish process (mainteners or core-team members).
 
-**Create a new release of `creedengo-rules-specifications` repository** : please see above [HOWTO create a release](#howto-create-a-release-core-contributor-rights-needed).
+**Create a new release of `creedengo-rules-specifications` and `creedengo-integration-test` repository** : please see above [HOWTO create a release](#howto-create-a-release-core-contributor-rights-needed).
 
 Why create a new release before ?
-Because publish process of `creedengo-rules-specifications` on Maven Central needs a tag on `creedengo-rules-specifications` repository.
+Because publish process of `creedengo-rules-specifications` or `creedengo-integration-test` on Maven Central needs a tag on `creedengo-rules-specifications` or `creedengo-integration-test` repository.
 
 ### Maven Central publish process
 
