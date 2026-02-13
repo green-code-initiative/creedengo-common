@@ -455,7 +455,10 @@ Because publish process of `creedengo-rules-specifications` or `creedengo-integr
 - click on "Run workflow" list button
 - choose a tag version (and not a branch because SNAPSHOT version won't be published on Maven Central)
 - click on "Run workflow" button
-- check launched workflow on Actions tab
+- check launched workflow on Actions tab and wait for success
+- go Maven central web site (https://central.sonatype.com), login and click on "publish" tab
+- wait for the new artifact is uploaded by previous github action process 
+- click on "publish" button
 - 20 minutes later (because of Maven central internal process), check on maven central if new version is published
   - check here : https://central.sonatype.com/artifact/org.green-code-initiative/creedengo-rules-specifications/versions
 
