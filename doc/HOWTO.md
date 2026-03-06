@@ -318,11 +318,14 @@ mvn license:format
 
 ### Create a release on DYNAMIC versionning system module
 
-For now, this is ONLY the use case for `creedengo-rules-specifications` and `creedengo-integration-test` repositories.
+For now, this is ONLY the use case for following respositories :
+- `creedengo-rules-specifications`
+- `creedengo-integration-test`
+- `creedengo-python`
 
-Why dynamic ? because the versionning is dynamic in this repository.
-
-No need to execute the 2 shell scripts (and commits / pushes) in "static" way to manage the versionning.
+Why dynamic ?
+- because the versionning is dynamic in this repository.
+- no need to execute the 2 shell scripts (and commits / pushes) in "static" way to manage the versionning.
 
 1. **upgrade `CHANGELOG.md`** : add release notes for next release
     1. **Replace `Unreleased` title** with the new version like `Release X.Y.Z` and the date
@@ -340,9 +343,18 @@ No need to execute the 2 shell scripts (and commits / pushes) in "static" way to
    1. locally, **go to and update `main`** branch
    2. **execute `git push --tags`** to push new previously created tag
 
+Next, 2 ways to create JAR files :
+- for internal components (`creedengo-rules-specifications` and `creedengo-integration-test`) :
+   - no need to create a github release with JAR file, only tag is needed
+   - after creating a tag (previous step), launch "publish to maven central" github action to deploy a JAR file on maven central
+- for sonarqube creedengo plugins, we need to create a github release with JAR file, and then create a PR on SonarSource/sonar-update-center-properties to publish the new version on SonarQube Marketplace
+  - after creating a tag (previous step), launch "tag release" github action to create a github release with JAR file
+  - then, create a PR on SonarSource/sonar-update-center-properties to publish the new version on SonarQube Marketplace (see above process to publish a new version of a plugin in SonarQube Marketplace)
+
+
 ### Create a release on STATIC versionning system module
 
-This is the use case for all plugin repositories except `creedengo-rules-specifications` and `creedengo-integration-test` repositories  .
+This is the use case for all plugin repositories except previous listed components on previous dynamic section.
 
 1. IF **new release wanted** is a **major** or **minor** version (`X` or `Y` in `X.Y.Z`)
    1. **THEN** **modify the old version** to the new version in **all XML/YML files**
