@@ -30,7 +30,7 @@
     - [Local `creedengo-rules-specifications` dependency](#local-creedengo-rules-specifications-dependency)
     - [Develop you rule](#develop-you-rule)
   - [Test your rule implementation](#test-your-rule-implementation)
-    - [Specific real test project for Python and Java plugin](#specific-real-test-project-for-python-and-java-plugin)
+    - [Specific real test project for Java, Python and PHP plugin](#specific-real-test-project-for-java-python-and-php-plugin)
   - [Check `Definition Of Done` for new rule implementation](#check-definition-of-done-for-new-rule-implementation)
 - [Publish your work](#publish-your-work)
   - [Commit your code](#commit-your-code)
@@ -272,9 +272,9 @@ Inside your plugin project, you can now :
 > Each rule needs to have scripts in a specific language (i.e. Python, Rust, JS, PHP and JAVA) in order to test directly inside Sonarqube that the rule has been implemented.
 > To validate that the rule has been implemented, you need to execute a scan on those scripts. You will need sonar scanner: <https://docs.sonarqube.org/latest/analysis/scan/sonarscanner/>
 
-### Specific real test project for Python and Java plugin
+### Specific real test project for Java, Python and PHP plugin
 
-These two plugins doesn't have a specific test project yet in a separated repository.
+These three plugins doesn't have a specific test project yet in a separated repository.
 We are deploying in all plugins, a new system to make real tests based on integration tests inside each plugin.
 The purpose of this system is to be independent of Docker to launch integration tests.
 Now, we needn't Docker to launch integration tests.

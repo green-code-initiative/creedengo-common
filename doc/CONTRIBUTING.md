@@ -14,7 +14,8 @@
     - [How Do I Suggest a New Rule ?](#how-do-i-suggest-a-new-rule-)
     - [Your First Code Contribution](#your-first-code-contribution)
     - [Improving The Documentation](#improving-the-documentation)
-  - [Styleguides](#styleguides)
+    - [How to find work for contributing ?](#how-to-find-work-for-contributing-)
+  - [Style guides](#style-guides)
   - [Join The Project Team](#join-the-project-team)
   - [Attribution](#attribution)
 
@@ -123,6 +124,17 @@ Please check [Starter pack](https://github.com/green-code-initiative/creedengo-c
 ### Improving The Documentation
 
 Please make a Pull Request with modifications.
+
+### How to find work for contributing ?
+
+- check previous sections
+- if not enough, you can check different Kanban boards ("ready" column)
+  - JAVA plugin : https://github.com/orgs/green-code-initiative/projects/17/views/1
+  - PHP plugin : https://github.com/orgs/green-code-initiative/projects/16
+  - PYTHON plugin : https://github.com/orgs/green-code-initiative/projects/15
+- you can also work on new ideas, or improvments on existing rules, regarding previous hackathons (please check "ready to analyse" column) : https://github.com/orgs/green-code-initiative/projects/19/views/1
+- common repository : https://github.com/orgs/green-code-initiative/projects/20/views/1
+
 
 ## Style guides
 
