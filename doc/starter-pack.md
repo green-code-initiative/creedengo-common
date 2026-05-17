@@ -1,4 +1,5 @@
 
+- [User Guide](#user-guide)
 - [Basic Explanations](#basic-explanations)
   - [Sonarqube Plugin](#sonarqube-plugin)
     - [How a SonarQube plugin works](#how-a-sonarqube-plugin-works)
@@ -38,6 +39,10 @@
   - [Review others development](#review-others-development)
   - [Validation of a PR](#validation-of-a-pr)
   - [Close your rule](#close-your-rule)
+
+# User guide
+
+Here is th global User Guide for creedengo plugins : [USER-GUIDE.md](https://github.com/green-code-initiative/creedengo-common/blob/main/doc/USER-GUIDE.md)
 
 # Basic Explanations
 
