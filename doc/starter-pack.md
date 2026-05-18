@@ -1,5 +1,5 @@
 
-- [User Guide](#user-guide)
+- [User guide](#user-guide)
 - [Basic Explanations](#basic-explanations)
   - [Sonarqube Plugin](#sonarqube-plugin)
     - [How a SonarQube plugin works](#how-a-sonarqube-plugin-works)
@@ -60,8 +60,8 @@ For example, you’ll be able to access all of the `for` loops, to explore conte
 
 To better understand AST structure, you can use the [AST Explorer](https://astexplorer.net/) and select the language of the code you want to explore.
 
-Somem Creedengo plugins (Javascript, Csharp) work differently because they don't parse the code to transform it into an AST themselves, they use the internal linter engine (ex : ESLint for Javascript) which does the parsing by itself ([More information here](https://github.com/green-code-initiative/creedengo-javascript/blob/main/CONTRIBUTING.md)).
-The good part is that it means fro Javscript for example, that all creedengo JavaScript rules are made available both to Sonar and to [ESLint](https://eslint.org/) through an [creedengo ESLint plugin](https://www.npmjs.com/package/@creedengo/eslint-plugin).
+Some Creedengo plugins (Javascript, Csharp) work differently because they don't parse the code to transform it into an AST themselves, they use the internal linter engine (ex : ESLint for Javascript) which does the parsing by itself ([More information here](https://github.com/green-code-initiative/creedengo-javascript/blob/main/CONTRIBUTING.md)).
+The good part is that it means for Javascript for example, that all creedengo JavaScript rules are made available both to Sonar and to [ESLint](https://eslint.org/) through an [creedengo ESLint plugin](https://www.npmjs.com/package/@creedengo/eslint-plugin).
 
 ## Gitflow
 
@@ -94,7 +94,7 @@ This is the purpose of all this document.
 
 This section is to help you to install and configure your first environment to develop with us !!!
 
-We advise you to use [Sdkman.io](https://sdkman.io/) to manage tools versions of your tools, locally. This tool will install different versions of toold as you want.
+We advise you to use [Sdkman.io](https://sdkman.io/) to manage tools versions of your tools, locally. This tool will install different versions of tools as you want.
 
 ## Requirements
 
@@ -151,7 +151,7 @@ You will find all steps to start and configure your local Sonarqube dev Environm
 - 1st step - build your local plugin: <https://github.com/green-code-initiative/creedengo-common/blob/main/doc/HOWTO.md#howto-build-the-sonarqube-creedengo-plugins>
 - 2nd step - launch local Sonarqube (once previous local plugin built and installed) : <https://github.com/green-code-initiative/creedengo-common/blob/main/doc/HOWTO.md#howto-install-sonarqube-dev-environment>
 - 3rd step - check that local environment is running perfectly :
-  - choose one of repositories with suffix "test-project" (ex : <https://github.com/green-code-initiative/creedengo-php-test-project/tree/main>) for other languages than Java, Python and Php
+  - choose one of repositories with suffix "test-project" (ex : <https://github.com/green-code-initiative/creedengo-csharp-test-project/tree/main>) for other languages than Java, Python and Php
     - next, launch script `tool_send_to_sonar.sh` (using previous security token created on the second step)
     - finally, open local SonarQube GUI (<http://localhost:9000>) to verify if the project alone raises creedengo errors
   - For Java, Python and Php plugins, please check bottom, ("Specific real test project for Java, Python and Java plugins" part ), there is no test project anymore. It is directly integrated inside the plugin under `src/it/test-projects` directory and the check step is easier and automatic.
@@ -268,7 +268,7 @@ Inside your plugin project, you can now :
 
 ## Test your rule implementation
 
-- First kind of test : Unit tests (please check `Definition of Done` above)
+- First kind of test : Unit tests (please check `Definition of Done` bottom)
 - Second kind of test :
   - For neither Java, nor Php, nor Python plugins : End-to-End tests in a real local environment (please check `Definition of Done` above and [local procedure](https://github.com/green-code-initiative/creedengo-common/blob/main/doc/starter-pack.md#start-local-environment) )
   - For Java, Php, Python plugins : Integration Tests described in the next section
@@ -308,7 +308,7 @@ For a new rule implementation, we strongly recommend you to follow this check-li
 - [ ] Create PR on the `creedengo-rules-specifications` repository to add the new rule definition
   - [ ] To choose the new rule id :
     - [ ] if rule is already existing in `RULES.md` file in `creedengo-rules-specifications` module, please use the given rule id
-    - [ ] if rule doesn't already exist in `RULES.md` file in `creedengo-rules-specifications` module, please use a random number between 2000 and 3000 (ex : "GCI3289") and use it (later, you will be asked to change it)
+    - [ ] if rule doesn't already exist in `RULES.md` file in `creedengo-rules-specifications` module, please use a random number between 2000 and 3000 (ex : "GCI2389") and use it (later, you will be asked to change it)
   - [ ] You can use SNAPSHOT version of `creedengo-rules-specifications` during your local rule implementation to go forward
 - [ ] Implement rule in your local specific language repository with a reference to local SNAPSHOT of `creedengo-rules-specifications` (previously, install it locally with maven command)
   - [ ] Write Unit tests (and maximize code coverage)
