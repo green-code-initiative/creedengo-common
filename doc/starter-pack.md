@@ -32,7 +32,9 @@
     - [Develop you rule](#develop-you-rule)
   - [Test your rule implementation](#test-your-rule-implementation)
     - [Specific real test project for Java, Python and PHP plugins](#specific-real-test-project-for-java-python-and-php-plugins)
-  - [Check `Definition Of Done` for new rule implementation](#check-definition-of-done-for-new-rule-implementation)
+  - [Check `Definition Of Done`](#check-definition-of-done)
+    - [for new rule implementation](#for-new-rule-implementation)
+    - [for existing rule implementation (bug or improvment)](#for-existing-rule-implementation-bug-or-improvment)
 - [Publish your work](#publish-your-work)
   - [Commit your code](#commit-your-code)
   - [Open pull request](#open-pull-request)
@@ -300,7 +302,9 @@ You can find this new real tests system inside `src/it` directory :
 - sub-directory `test-projects` contains the real test projects (the old one that was in a separated repository)
   - if you really want to launch End-to-End tests, you can do it because you can find scripts to do it inside.
 
-## Check `Definition Of Done` for new rule implementation
+## Check `Definition Of Done` 
+
+### for new rule implementation
 
 For a new rule implementation, we strongly recommend you to follow this check-list :
 
@@ -316,9 +320,18 @@ For a new rule implementation, we strongly recommend you to follow this check-li
   - [ ] Write End-to-End test (based on Unit Tests and same resource test files) for plugins different from Java, Python and Php
   - [ ] Update `CHANGELOG.md` file (inside `Unreleased` section)
 - [ ] for plugins different from Java, Python and Php, create PR on the real test project to add a triggering case (check [local procedure](https://github.com/green-code-initiative/creedengo-common/blob/main/doc/starter-pack.md#start-local-environment))
-- [ ] Fix potential SonarCloud issues / out-of-date warnings (report is sent after creating PR)
+- [ ] OPTIONAL - Fix potential SonarCloud issues / out-of-date warnings (report is sent after creating PR)
 - [ ] In next review step, reviewer will ask you to use a specific id rule if you have chosen a random one
 
+### for existing rule implementation (bug or improvment)
+
+- [ ] Improve rule in your local specific language repository
+  - [ ] Write / adapt Unit tests (and maximize code coverage)
+  - [ ] Write / adapt Integration tests (based on Unit Tests and same resource test files) for Java, Python and Php plugins
+  - [ ] Write End-to-End test (based on Unit Tests and same resource test files) for plugins different from Java, Python and Php
+  - [ ] Update `CHANGELOG.md` file (inside `Unreleased` section)
+- [ ] for plugins different from Java, Python and Php, create PR on the real test project to add a triggering case (check [local procedure](https://github.com/green-code-initiative/creedengo-common/blob/main/doc/starter-pack.md#start-local-environment))
+- [ ] OPTIONAL - Fix potential SonarCloud issues / out-of-date warnings (report is sent after creating PR)
 
 # Publish your work
 
