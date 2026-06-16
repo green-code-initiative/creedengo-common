@@ -322,6 +322,7 @@ For now, this is ONLY the use case for following respositories :
 - `creedengo-rules-specifications`
 - `creedengo-integration-test`
 - `creedengo-python`
+- `creedengo-java`
 
 Why dynamic ?
 - because the versionning is dynamic in this repository.
@@ -347,6 +348,7 @@ Next, 2 ways to create JAR files :
 - for internal components (`creedengo-rules-specifications` and `creedengo-integration-test`) :
    - no need to create a github release with JAR file, only tag is needed
    - after creating a tag (previous step), launch "publish to maven central" github action to deploy a JAR file on maven central
+   - check publishing in maven central website : accept publish to really publish the JAR file on maven central
 - for sonarqube creedengo plugins, we need to create a github release with JAR file, and then create a PR on SonarSource/sonar-update-center-properties to publish the new version on SonarQube Marketplace
   - after creating a tag (previous step), launch "tag release" github action to create a github release with JAR file
   - then, create a PR on SonarSource/sonar-update-center-properties to publish the new version on SonarQube Marketplace (see above process to publish a new version of a plugin in SonarQube Marketplace)
