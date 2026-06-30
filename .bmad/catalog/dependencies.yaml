@@ -13,8 +13,6 @@ sharing_policy:
 
 repositories:
   creedengo-rules-specifications:
-    consumes:
-      - creedengo-common
     produces:
       - cross_repo_epics
       - rule_lifecycle_definitions
@@ -38,9 +36,8 @@ repositories:
 
   creedengo-integration-test:
     consumes:
-      - creedengo-common
       - creedengo-rules-specifications
-      - creedengo-csharp
+    required_by:
       - creedengo-csharp-sonarqube
       - creedengo-flutter-mobile
       - creedengo-android-java
@@ -63,7 +60,6 @@ repositories:
     consumes:
       - creedengo-csharp
       - creedengo-rules-specifications
-      - creedengo-common
     produces:
       - csharp_plugin_implementation
       - csharp_plugin_contract_validation
