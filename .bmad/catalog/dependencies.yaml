@@ -1,6 +1,15 @@
 version: 1
 updated_at: 2026-06-30
 
+sharing_policy:
+  creedengo-common:
+    purpose: process_only
+    technical_artifacts_allowed: false
+    maven_dependency_expected: false
+  technical_sharing_repositories:
+    rules_and_specs: creedengo-rules-specifications
+    integration_tests: creedengo-integration-test
+
 repositories:
   creedengo-rules-specifications:
     consumes:

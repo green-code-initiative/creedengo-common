@@ -5,7 +5,7 @@ hub_repository: creedengo-common
 repositories:
   - id: creedengo-common
     type: hub
-    role: "BMad templates, workflows and shared process source of truth"
+    role: "BMad templates/workflows source of truth (process only, no shared runtime libs)"
     owner: "@core-team"
     default_branch: main
 

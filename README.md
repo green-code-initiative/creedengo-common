@@ -10,6 +10,11 @@ This repository is the shared source of truth for:
 
 The `.bmad/` directory is the bootstrap and process hub for the Creedengo organization.
 
+`creedengo-common` is process-only in this model: it does not provide shared runtime libraries or direct Maven dependencies for other repositories.
+Technical sharing stays in:
+- `creedengo-rules-specifications` (rules/spec artifacts)
+- `creedengo-integration-test` (integration test artifacts)
+
 ### Structure
 
 - `.bmad/catalog/repositories.yaml`: repository inventory and ownership
