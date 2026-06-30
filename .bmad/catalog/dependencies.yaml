@@ -59,10 +59,40 @@ repositories:
       - adapter_contract_validation
 
 plugins:
-  all_plugins_depend_on:
+  process_dependencies:
     - creedengo-common
     - creedengo-rules-specifications
     - creedengo-integration-test
+  maven_dependencies_verified_from_pom_xml:
+    creedengo-rules-specifications:
+      - creedengo-ios
+      - creedengo-java
+      - creedengo-php
+      - creedengo-python
+      - creedengo-javascript
+      - creedengo-kotlin
+      - creedengo-infra
+    creedengo-integration-test:
+      - creedengo-java
+      - creedengo-php
+      - creedengo-python
+      - creedengo-infra
+  repositories_without_matching_pom_dependency:
+    creedengo-rules-specifications:
+      - creedengo-flutter-mobile
+      - creedengo-dashboard
+      - creedengo-rust
+    creedengo-integration-test:
+      - creedengo-flutter-mobile
+      - creedengo-ios
+      - creedengo-dashboard
+      - creedengo-javascript
+      - creedengo-kotlin
+      - creedengo-rust
+  repositories_not_found_locally:
+    - creedengo-android-java
+    - creedengo-android-kotlin
+    - creedengo-html
 
 release_train:
   gatekeepers:
