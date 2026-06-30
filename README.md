@@ -10,6 +10,9 @@ This repository is the shared source of truth for:
 
 The `.bmad/` directory is the bootstrap and process hub for the Creedengo organization.
 
+BMAD (Build More Architect Dreams) is an AI-assisted agile framework: it structures work with reusable artifacts (epics, stories, DoD, workflows) to coordinate delivery across repositories.
+Official documentation: https://github.com/bmad-code-org/BMAD-METHOD
+
 `creedengo-common` is process-only in this model: it does not provide shared runtime libraries or direct Maven dependencies for other repositories.
 Technical sharing stays in:
 - `creedengo-rules-specifications` (rules/spec artifacts)
