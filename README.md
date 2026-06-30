@@ -22,7 +22,8 @@ Target future norm for SonarQube plugin repositories: all plugins should depend 
 Current real state is also tracked in `.bmad/catalog/dependencies.yaml` under:
 - `plugins.maven_dependencies_observed_locally_from_pom_xml`
 - `plugins.repositories_without_matching_pom_dependency`
-- `plugins.repositories_not_found_locally`
+- `plugins.repositories_without_pom_xml_locally`
+- `plugins.repositories_observed_with_non_maven_build` (e.g. `creedengo-android-kotlin`)
 
 ### Structure
 
