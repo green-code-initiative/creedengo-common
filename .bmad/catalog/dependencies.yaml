@@ -72,7 +72,53 @@ plugins:
     - creedengo-common
     - creedengo-rules-specifications
     - creedengo-integration-test
-  maven_dependencies_verified_from_pom_xml:
+  target_plugin_repositories:
+    - creedengo-csharp-sonarqube
+    - creedengo-flutter-mobile
+    - creedengo-android-java
+    - creedengo-android-kotlin
+    - creedengo-ios
+    - creedengo-dashboard
+    - creedengo-java
+    - creedengo-php
+    - creedengo-python
+    - creedengo-javascript
+    - creedengo-kotlin
+    - creedengo-rust
+    - creedengo-html
+    - creedengo-infra
+  target_maven_dependencies_norm:
+    creedengo-rules-specifications:
+      - creedengo-csharp-sonarqube
+      - creedengo-flutter-mobile
+      - creedengo-android-java
+      - creedengo-android-kotlin
+      - creedengo-ios
+      - creedengo-dashboard
+      - creedengo-java
+      - creedengo-php
+      - creedengo-python
+      - creedengo-javascript
+      - creedengo-kotlin
+      - creedengo-rust
+      - creedengo-html
+      - creedengo-infra
+    creedengo-integration-test:
+      - creedengo-csharp-sonarqube
+      - creedengo-flutter-mobile
+      - creedengo-android-java
+      - creedengo-android-kotlin
+      - creedengo-ios
+      - creedengo-dashboard
+      - creedengo-java
+      - creedengo-php
+      - creedengo-python
+      - creedengo-javascript
+      - creedengo-kotlin
+      - creedengo-rust
+      - creedengo-html
+      - creedengo-infra
+  maven_dependencies_observed_locally_from_pom_xml:
     creedengo-rules-specifications:
       - creedengo-csharp-sonarqube
       - creedengo-ios

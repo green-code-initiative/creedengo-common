@@ -18,6 +18,8 @@ Technical sharing stays in:
 - `creedengo-rules-specifications` (rules/spec artifacts)
 - `creedengo-integration-test` (integration test artifacts)
 
+Target future norm for SonarQube plugin repositories: all plugins should depend on both `creedengo-rules-specifications` and `creedengo-integration-test`.
+
 ### Structure
 
 - `.bmad/catalog/repositories.yaml`: repository inventory and ownership
