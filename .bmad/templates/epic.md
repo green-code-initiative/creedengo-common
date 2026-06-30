@@ -18,13 +18,12 @@
 - {{OUT_OF_SCOPE_ITEM_1}}
 
 ## Impacted repositories
+Use this checklist as an example only (non-exhaustive). Adapt it to the epic scope and confirm impacted repositories against `.bmad/catalog/dependencies.yaml`.
+
+Example:
 - [ ] creedengo-rules-specifications
 - [ ] creedengo-integration-test
-- [ ] creedengo-csharp
 - [ ] creedengo-csharp-sonarqube
-- [ ] creedengo-java
-- [ ] creedengo-python
-- [ ] creedengo-php
 
 ## Cross-repo stories
 - [ ] {{STORY_ID_1}} (`{{REPO_1}}`)
