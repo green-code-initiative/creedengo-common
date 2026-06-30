@@ -56,19 +56,19 @@ repositories:
       - compatibility_matrix_results
       - release_readiness_signal
 
-  creedengo-csharp-sonarqube:
-    consumes:
-      - creedengo-csharp
-      - creedengo-rules-specifications
-    produces:
-      - csharp_plugin_implementation
-      - csharp_plugin_contract_validation
-
 plugins:
   process_dependencies:
     - creedengo-common
     - creedengo-rules-specifications
     - creedengo-integration-test
+  plugin_specific_dependencies:
+    creedengo-csharp-sonarqube:
+      consumes:
+        - creedengo-csharp
+        - creedengo-rules-specifications
+      produces:
+        - csharp_plugin_implementation
+        - csharp_plugin_contract_validation
   target_plugin_repositories:
     - creedengo-csharp-sonarqube
     - creedengo-flutter-mobile
