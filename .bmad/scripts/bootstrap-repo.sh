@@ -17,7 +17,7 @@ Usage:
   bootstrap-repo.sh <target-repo-path> [repository-id]
 
 Arguments:
-  target-repo-path  Path to the repository to initialize
+  target-repo-path  Path to the repository to initialize (absolute or relative)
   repository-id     Optional repository identifier (defaults to folder name)
 EOF
 }
