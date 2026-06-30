@@ -1,5 +1,6 @@
 version: 1
 updated_at: 2026-06-30
+dependency_model: target_and_observed_state
 
 sharing_policy:
   creedengo-common:
@@ -119,6 +120,7 @@ plugins:
       - creedengo-html
       - creedengo-infra
   maven_dependencies_observed_locally_from_pom_xml:
+    description: "Current state observed locally from available pom.xml files"
     creedengo-rules-specifications:
       - creedengo-csharp-sonarqube
       - creedengo-ios
