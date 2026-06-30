@@ -23,14 +23,14 @@ repositories:
 
   - id: creedengo-csharp
     type: core
-    role: "Core contracts and shared behavior for C#-based ecosystem"
+    role: "Core C# module providing shared linter foundation and contracts"
     owner: "@csharp-core-team"
     default_branch: main
 
   - id: creedengo-csharp-sonarqube
-    type: adapter
-    role: "SonarQube adapter for creedengo-csharp contracts"
-    owner: "@csharp-adapter-team"
+    type: plugin
+    role: "SonarQube plugin for C# based on creedengo-csharp core linter"
+    owner: "@csharp-team"
     default_branch: main
 
   - id: creedengo-flutter-mobile

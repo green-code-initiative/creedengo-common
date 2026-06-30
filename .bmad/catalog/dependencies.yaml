@@ -55,8 +55,8 @@ repositories:
       - creedengo-rules-specifications
       - creedengo-common
     produces:
-      - adapter_implementation
-      - adapter_contract_validation
+      - csharp_plugin_implementation
+      - csharp_plugin_contract_validation
 
 plugins:
   process_dependencies:
@@ -65,6 +65,7 @@ plugins:
     - creedengo-integration-test
   maven_dependencies_verified_from_pom_xml:
     creedengo-rules-specifications:
+      - creedengo-csharp-sonarqube
       - creedengo-ios
       - creedengo-java
       - creedengo-php
@@ -83,6 +84,7 @@ plugins:
       - creedengo-dashboard
       - creedengo-rust
     creedengo-integration-test:
+      - creedengo-csharp-sonarqube
       - creedengo-flutter-mobile
       - creedengo-ios
       - creedengo-dashboard
@@ -100,4 +102,3 @@ release_train:
     - creedengo-integration-test
   optional_gatekeepers:
     - creedengo-csharp
-    - creedengo-csharp-sonarqube
