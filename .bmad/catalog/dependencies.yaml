@@ -1,0 +1,73 @@
+version: 1
+updated_at: 2026-06-30
+
+repositories:
+  creedengo-rules-specifications:
+    consumes:
+      - creedengo-common
+    produces:
+      - cross_repo_epics
+      - rule_lifecycle_definitions
+    required_by:
+      - creedengo-integration-test
+      - creedengo-csharp
+      - creedengo-csharp-sonarqube
+      - creedengo-flutter-mobile
+      - creedengo-android-java
+      - creedengo-android-kotlin
+      - creedengo-ios
+      - creedengo-dashboard
+      - creedengo-java
+      - creedengo-php
+      - creedengo-python
+      - creedengo-javascript
+      - creedengo-kotlin
+      - creedengo-rust
+      - creedengo-html
+      - creedengo-infra
+
+  creedengo-integration-test:
+    consumes:
+      - creedengo-common
+      - creedengo-rules-specifications
+      - creedengo-csharp
+      - creedengo-csharp-sonarqube
+      - creedengo-flutter-mobile
+      - creedengo-android-java
+      - creedengo-android-kotlin
+      - creedengo-ios
+      - creedengo-dashboard
+      - creedengo-java
+      - creedengo-php
+      - creedengo-python
+      - creedengo-javascript
+      - creedengo-kotlin
+      - creedengo-rust
+      - creedengo-html
+      - creedengo-infra
+    produces:
+      - compatibility_matrix_results
+      - release_readiness_signal
+
+  creedengo-csharp-sonarqube:
+    consumes:
+      - creedengo-csharp
+      - creedengo-rules-specifications
+      - creedengo-common
+    produces:
+      - adapter_implementation
+      - adapter_contract_validation
+
+plugins:
+  all_plugins_depend_on:
+    - creedengo-common
+    - creedengo-rules-specifications
+    - creedengo-integration-test
+
+release_train:
+  gatekeepers:
+    - creedengo-rules-specifications
+    - creedengo-integration-test
+  optional_gatekeepers:
+    - creedengo-csharp
+    - creedengo-csharp-sonarqube
