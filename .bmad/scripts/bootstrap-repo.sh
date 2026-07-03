@@ -97,7 +97,7 @@ if [[ ! -f "${REPO_CONTEXT_FILE}" ]]; then
   cat > "${REPO_CONTEXT_FILE}" <<EOF
 version: 1
 repository:
-  id: ${REPOSITORY_ID}
+  id: "${REPOSITORY_ID}"
   role: "Describe the repository role"
   owner: "@team"
   maintainers:
