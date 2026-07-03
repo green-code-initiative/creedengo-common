@@ -121,6 +121,10 @@ echo "[4/5] Ensuring DoD checklist exists..."
 DOD_TEMPLATE="${BMAD_ROOT}/templates/dod-checklist.md"
 DOD_FILE="${BMAD_DIR}/quality/dod-checklist.md"
 if [[ ! -f "${DOD_FILE}" ]]; then
+  if [[ ! -f "${DOD_TEMPLATE}" ]]; then
+    echo "Error: DoD template not found: ${DOD_TEMPLATE}" >&2
+    exit 1
+  fi
   cp "${DOD_TEMPLATE}" "${DOD_FILE}"
   echo "      Copied template to: ${DOD_FILE}"
 else
