@@ -46,3 +46,9 @@ Optional repository id:
 ```bash
 ./.bmad/scripts/bootstrap-repo.sh ../creedengo-java creedengo-java
 ```
+
+Optional hub templates path written in `.bmad/repo-context.yaml`:
+
+```bash
+./.bmad/scripts/bootstrap-repo.sh --hub-templates-path ../my-bmad-hub/.bmad/templates ../creedengo-java
+```

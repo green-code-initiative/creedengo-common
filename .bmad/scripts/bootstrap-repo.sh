@@ -14,7 +14,12 @@ BMAD_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 usage() {
   cat <<'EOF'
 Usage:
-  bootstrap-repo.sh <target-repo-path> [repository-id]
+  bootstrap-repo.sh [options] <target-repo-path> [repository-id]
+
+Options:
+  --hub-templates-path <path>  Value written to links.bmad_hub_templates in repo-context.yaml
+                               (default: ../creedengo-common/.bmad/templates)
+  -h, --help                   Show this help message
 
 Arguments:
   target-repo-path  Path to the repository to initialize (absolute or relative)
@@ -22,30 +27,64 @@ Arguments:
 EOF
 }
 
-if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
-  usage
-  exit 0
-fi
+DEFAULT_HUB_TEMPLATES_PATH="../creedengo-common/.bmad/templates"
+HUB_TEMPLATES_PATH="${DEFAULT_HUB_TEMPLATES_PATH}"
+TARGET_REPO_PATH=""
+REPOSITORY_ID=""
 
-if [[ $# -lt 1 || $# -gt 2 ]]; then
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    --hub-templates-path)
+      if [[ -z "${2:-}" ]]; then
+        echo "Error: --hub-templates-path requires a value." >&2
+        exit 1
+      fi
+      HUB_TEMPLATES_PATH="$2"
+      shift 2
+      ;;
+    -*)
+      echo "Error: unknown option: $1" >&2
+      usage
+      exit 1
+      ;;
+    *)
+      if [[ -z "${TARGET_REPO_PATH}" ]]; then
+        TARGET_REPO_PATH="$1"
+      elif [[ -z "${REPOSITORY_ID}" ]]; then
+        REPOSITORY_ID="$1"
+      else
+        echo "Error: too many arguments." >&2
+        usage
+        exit 1
+      fi
+      shift
+      ;;
+  esac
+done
+
+if [[ -z "${TARGET_REPO_PATH}" ]]; then
   usage
   exit 1
 fi
 
 # 1) Resolve and validate target repository path.
 echo "[1/5] Resolving and validating target repository path..."
-TARGET_REPO_PATH="$1"
 if [[ ! -d "${TARGET_REPO_PATH}" ]]; then
   echo "Error: target repository path does not exist: ${TARGET_REPO_PATH}" >&2
   exit 1
 fi
 
 TARGET_REPO_PATH="$(cd "${TARGET_REPO_PATH}" && pwd)"
-REPOSITORY_ID="${2:-$(basename "${TARGET_REPO_PATH}")}"
+REPOSITORY_ID="${REPOSITORY_ID:-$(basename "${TARGET_REPO_PATH}")}"
 BMAD_DIR="${TARGET_REPO_PATH}/.bmad"
 echo "      Target: ${TARGET_REPO_PATH}"
 echo "      Repository ID: ${REPOSITORY_ID}"
 echo "      BMad dir: ${BMAD_DIR}"
+echo "      Hub templates path (repo-context): ${HUB_TEMPLATES_PATH}"
 
 # 2) Create required BMad directories.
 echo "[2/5] Creating required BMad directories..."
@@ -70,7 +109,7 @@ dependencies:
   validation:
     - creedengo-integration-test
 links:
-  bmad_hub_templates: "../creedengo-common/.bmad/templates"
+  bmad_hub_templates: "${HUB_TEMPLATES_PATH}"
 EOF
   echo "      Created: ${REPO_CONTEXT_FILE}"
 else
