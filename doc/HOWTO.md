@@ -276,7 +276,7 @@ You will need to clone 3 repos :
     * add the sub-tree structure as described for an already existing rule.
   * run 'mvn install' on this project to have the dependency in your local maven cache. This command will also generate the html file that's required when your build your sonar plugin.
 * creedengo-{lang} : to implement the rule for a target language
-  * change the version number in pom.xml of your sonar project : exemple for creedengo-java/pom.xml : <creedengo-rules-specifications.version>main-SNAPSHOT</creedengo-rules-specifications.version> to target your local build
+  * change the version number in pom.xml of your sonar project : example for creedengo-java/pom.xml : <creedengo-rules-specifications.version>main-SNAPSHOT</creedengo-rules-specifications.version> to target your local build
   * in the implementation, don't forget to add the @rule(key = “GCIxx”) annotation for Java, PHP, Python
   * use the command "mvn package" to produce the version of the plugin embedding the implementation and specifications of the rule concerned
     * It's ready to be tested in your local instance of SonarQube !
