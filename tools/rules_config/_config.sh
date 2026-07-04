@@ -32,6 +32,9 @@ TAG_ECODESIGN=creedengo
 #####
 
 # list of rule keys that will be updated with new tag
+# S1696 (Avoid catching NullPointerException) : 
+#  - discussion on https://github.com/green-code-initiative/creedengo-common/pull/15
+#  - proof : Here is a benchmark that demonstrates that catching exceptions is less performant in Java than testing null : https://github.com/wokier/green-code-initiative-trycatch-benchmark
 RULES_KEYS=java:S1696
 
 # filepath to markdown doc containing rule keys that will be updated with new tag
