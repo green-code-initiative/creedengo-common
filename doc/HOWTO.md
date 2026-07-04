@@ -280,7 +280,7 @@ You will need to clone 3 repos :
   * in the implementation, don't forget to add the @rule(key = “GCIxx”) annotation for Java, PHP, Python
   * use the command "mvn package" to produce the version of the plugin embedding the implementation and specifications of the rule concerned
     * It's ready to be tested in your local instance of SonarQube !
-* creedengo-{lang}-test-project : to add a real-life example of an outcome that a sonar analysis should detect. (For Java ,Javascript and Python the test project is included in the subfolder of the lang git project). 
+* creedengo-{lang}-test-project : to add a real-life example of an outcome that a sonar analysis should detect. (For Java, Javascript and Python the test project is included in the subfolder of the lang git project). 
 
 ### HOWTO debug a rule (with logs)
 
