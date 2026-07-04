@@ -270,7 +270,7 @@ You will need to clone 3 repos :
   * For a rule that already exists (existing ID) but is not described for the target language:
     * create a subfolder with the language name inside the rule folder 
     * create an ASCIIDOC file in it with the rule description for the chosen language, along with an example of KO code and an example of OK code.
-    * For an example, you can refer to the rule EC31 for java: : green-code-initiative/creedengo-rules-specifications/src/main/rules/GCI31/java/GCI31.asciidoc
+    * For an example, you can refer to the rule GCI31 for java: green-code-initiative/creedengo-rules-specifications/src/main/rules/GCI31/java/GCI31.asciidoc
   * For a rule that doesn't exist yet, determine an ID (random number between 1000 and 1500) that doesn't yet exist
     * add a JSON metadata file to describe the rule, its remediation cost, its tags, etc. (follow the example of other rules)
     * add the sub-tree structure as described for an already existing rule.
