@@ -1,0 +1,172 @@
+version: 1
+updated_at: 2026-07-01
+dependency_model: target_and_observed_state
+
+sharing_policy:
+  creedengo-common:
+    purpose: process_only
+    technical_artifacts_allowed: false
+    maven_dependency_expected: false
+  technical_sharing_repositories:
+    rules_and_specs: creedengo-rules-specifications
+    integration_tests: creedengo-integration-test
+
+repositories:
+  creedengo-rules-specifications:
+    produces:
+      - cross_repo_epics
+      - rule_lifecycle_definitions
+    required_by:
+      - creedengo-integration-test
+      - creedengo-csharp
+      - creedengo-csharp-sonarqube
+      - creedengo-flutter-mobile
+      - creedengo-android-java
+      - creedengo-android-kotlin
+      - creedengo-ios
+      - creedengo-dashboard
+      - creedengo-java
+      - creedengo-php
+      - creedengo-python
+      - creedengo-javascript
+      - creedengo-kotlin
+      - creedengo-rust
+      - creedengo-html
+      - creedengo-infra
+
+  creedengo-integration-test:
+    consumes:
+      - creedengo-rules-specifications
+    required_by:
+      - creedengo-csharp-sonarqube
+      - creedengo-flutter-mobile
+      - creedengo-android-java
+      - creedengo-android-kotlin
+      - creedengo-ios
+      - creedengo-dashboard
+      - creedengo-java
+      - creedengo-php
+      - creedengo-python
+      - creedengo-javascript
+      - creedengo-kotlin
+      - creedengo-rust
+      - creedengo-html
+      - creedengo-infra
+    produces:
+      - compatibility_matrix_results
+      - release_readiness_signal
+
+plugins:
+  process_dependencies:
+    - creedengo-common
+    - creedengo-rules-specifications
+    - creedengo-integration-test
+  plugin_specific_dependencies:
+    creedengo-csharp-sonarqube:
+      consumes:
+        - creedengo-csharp
+        - creedengo-rules-specifications
+      produces:
+        - csharp_plugin_implementation
+        - csharp_plugin_contract_validation
+  target_plugin_repositories:
+    - creedengo-csharp-sonarqube
+    - creedengo-flutter-mobile
+    - creedengo-android-java
+    - creedengo-android-kotlin
+    - creedengo-ios
+    - creedengo-dashboard
+    - creedengo-java
+    - creedengo-php
+    - creedengo-python
+    - creedengo-javascript
+    - creedengo-kotlin
+    - creedengo-rust
+    - creedengo-html
+    - creedengo-infra
+  target_maven_dependencies_norm:
+    creedengo-rules-specifications:
+      - creedengo-csharp-sonarqube
+      - creedengo-flutter-mobile
+      - creedengo-android-java
+      - creedengo-android-kotlin
+      - creedengo-ios
+      - creedengo-dashboard
+      - creedengo-java
+      - creedengo-php
+      - creedengo-python
+      - creedengo-javascript
+      - creedengo-kotlin
+      - creedengo-rust
+      - creedengo-html
+      - creedengo-infra
+    creedengo-integration-test:
+      - creedengo-csharp-sonarqube
+      - creedengo-flutter-mobile
+      - creedengo-android-java
+      - creedengo-android-kotlin
+      - creedengo-ios
+      - creedengo-dashboard
+      - creedengo-java
+      - creedengo-php
+      - creedengo-python
+      - creedengo-javascript
+      - creedengo-kotlin
+      - creedengo-rust
+      - creedengo-html
+      - creedengo-infra
+  maven_dependencies_observed_locally_from_pom_xml:
+    description: "Current state observed locally from available pom.xml files"
+    creedengo-rules-specifications:
+      - creedengo-csharp-sonarqube
+      - creedengo-ios
+      - creedengo-java
+      - creedengo-php
+      - creedengo-python
+      - creedengo-javascript
+      - creedengo-kotlin
+      - creedengo-infra
+    creedengo-integration-test:
+      - creedengo-java
+      - creedengo-php
+      - creedengo-python
+      - creedengo-infra
+  repositories_without_matching_pom_dependency:
+    creedengo-rules-specifications:
+      - creedengo-android-java
+      - creedengo-html
+      - creedengo-flutter-mobile
+      - creedengo-dashboard
+      - creedengo-rust
+    creedengo-integration-test:
+      - creedengo-android-java
+      - creedengo-html
+      - creedengo-csharp-sonarqube
+      - creedengo-flutter-mobile
+      - creedengo-ios
+      - creedengo-dashboard
+      - creedengo-javascript
+      - creedengo-kotlin
+      - creedengo-rust
+  repositories_without_pom_xml_locally:
+    - creedengo-android-kotlin
+  repositories_observed_with_non_maven_build:
+    creedengo-android-kotlin:
+      build_system: gradle-kotlin-dsl
+      build_files:
+        - build.gradle.kts
+        - settings.gradle.kts
+      observed_references:
+        creedengo-rules-specifications:
+          source: README.md
+          note: "Referenced as shared rules specifications (not observed as Maven dependency)."
+        creedengo-integration-test:
+          source: none
+          note: "No local technical dependency reference detected."
+
+release_train:
+  gatekeepers:
+    - creedengo-rules-specifications
+    - creedengo-integration-test
+  optional_gatekeepers:
+    - creedengo-csharp

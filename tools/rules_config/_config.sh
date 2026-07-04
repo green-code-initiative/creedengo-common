@@ -41,7 +41,7 @@ FILEPATH_SONAR_RULES_REUSED='./SONAR_RULES_REUSED.md'
 PROFILE_ECODESIGN="creedengoProfile"
 
 # programming languages list to create with "install_profile.sh" tool
-PROFILES_LANGUAGE_KEYS=php,py,java,cs
+PROFILES_LANGUAGE_KEYS=php,py,java,cs,js,ts
 
 # if we want to set created profiles as default profile for each language
 IS_PROFILE_ECODESIGN_DEFAULT=1

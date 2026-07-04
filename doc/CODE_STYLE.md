@@ -5,19 +5,13 @@
 	- [Source File Basics](#source-file-basics)
 		- [File encoding: UTF-8](#file-encoding-utf-8)
 		- [Indentation](#indentation)
-	- [Source file structure](#source-file-structure)
-		- [Import statements](#import-statements)
-		- [Java source file organization](#java-source-file-organization)
 	- [Formatting](#formatting)
-		- [Braces](#braces)
-			- [Block-like constructs: K\&R style](#block-like-constructs-kr-style)
-		- [Line wrapping](#line-wrapping)
-		- [Blank Lines](#blank-lines)
-	- [Class declaration](#class-declaration)
-	- [Naming](#naming)
-		- [Constant names](#constant-names)
-		- [Variable names](#variable-names)
-	- [Programming Practices](#programming-practices)
+	- [Java Programming Practices](#programming-practices)
+		- [Naming](#naming)
+			- [Constant names](#constant-names)
+			- [Variable names](#variable-names)
+		- [Java source file organization](#java-source-file-organization)
+		- [Class declaration](#class-declaration)
 		- [File history](#file-history)
 		- [Organization of setter methods](#organization-of-setter-methods)
 		- [Ternary Operator](#ternary-operator)
@@ -40,139 +34,33 @@
 
 ## Introduction
 
-This document defines the coding standards for source files in the plugin. It is primarily intended for the plugin team but can be used as a reference by contributors.
+This document defines the coding standards for source and configuration files.
 
-The structure of this document is based on the [Google Java Style](https://google.github.io/styleguide/javaguide.html) reference and [Springframework Code Style](https://github.com/spring-projects/spring-framework/wiki/Code-Style) and is a _work in progress_.
-
-## Source File Basics
+## File Basics
 
 ### File encoding: UTF-8
 
-Source files must be encoded using `UTF-8`.
+Files must be encoded using `UTF-8`.
 
 ### Indentation
 
-> In Progresss
-
-## Source file structure
-
-A source file consists of the following, in this exact order:
-
-- Package statement
-- Import statements
-- Exactly one top-level class
-
-Exactly one blank line separates each of the above sections.
-
-### Import statements
-
-> In Progresss
-
-### Java source file organization
-
-The following governs how the elements of a source file are organized:
-
-1. static fields
-1. normal fields
-1. constructors
-1. (private) methods called from constructors
-1. static factory methods
-1. JavaBean properties (i.e., getters and setters)
-1. method implementations coming from interfaces
-1. private or protected templates that get called from method implementations coming from interfaces
-1. other methods
-1. `equals`, `hashCode`, and `toString`
-
-Note that private or protected methods called from method implementations should be placed immediately below the methods where they're used. In other words if there 3 interface method implementations with 3 private methods (one used from each), then the order of methods should include 1 interface and 1 private method in sequence, not 3 interface and then 3 private methods at the bottom.
-
-Above all, the organization of the code should feel _natural_.
+2 spaces.
 
 ## Formatting
 
-### Braces
+Formatting must be checked in build using [Spotless Maven plugin](https://github.com/diffplug/spotless/tree/main/plugin-maven) with configuration depending on file type:
 
-#### Block-like constructs: K&R style
+- Java - [Google Java Format](https://github.com/google/google-java-format) based on [Google Java Style](https://google.github.io/styleguide/javaguide.html)
+- POM - [sortPom](https://github.com/Ekryd/sortpom)
+- JSON - [Eclipse WTP](https://github.com/diffplug/spotless/tree/main/plugin-maven#eclipse-web-tools-platform)
 
-Braces mostly follow the _Kernighan and Ritchie style_ (a.k.a., "Egyptian brackets") for nonempty blocks and block-like constructs:
+See [creedengo-rules-specifications pom.xml](https://github.com/green-code-initiative/creedengo-rules-specifications/blob/main/pom.xml) for the Spotless configuration reference.
 
-- No line break before the opening brace but prefixed by a single space
-- Line break after the opening brace
-- Line break before the closing brace
-- Line break after the closing brace if that brace terminates a statement or the body of a method, constructor, or named class
-- Line break before else, catch and finally statements
+## Java Programming Practices
 
-Example:
+### Naming
 
-```java
-return new MyClass() {
-  @Override
-  public void method() {
-    if (condition()) {
-      something();
-    }
-    else {
-      try {
-        alternative();
-      }
-      catch (ProblemException ex) {
-        recover();
-      }
-    }
-  }
-};
-```
-
-### Line wrapping
-
-90 characters is the _preferred_ line length we aim for. In some cases the preferred length can be achieved by refactoring code slightly. In other cases it's  just not possible.
-
-90 is not a hard limit. Lines between 90-105 are perfectly acceptable in many cases where it aids readability and where wrapping has the opposite effect of reducing readability. This is a judgement call and it's also important to seek consistency. Many times you can learn by looking how specific situations are handled in other parts of the code.
-
-Lines between 105-120 are allowed but discouraged and should be few.
-
-No lines should exceed 120 characters.
-
-The one big exception to the above line wrapping rules is Javadoc where we aim to wrap around 80 characters for maximum readability in all kinds of contexts, e.g. reading on Github, on your phone, etc.
-
-When wrapping a lengthy expression, 90 characters is the length at which we aim to wrap. Put the separator symbols at the end of the line rather on the next line (comma separated arguments, etc). For instance:
-
-```java
-if (thisLengthyMethodCall(param1, param2) && anotherCheck() && yetAnotherCheck()) {
-  // ....
-}
-```
-
-### Blank Lines
-
-Add two blank lines before the following elements:
-
-- `static {}` block
-- Fields
-- Constructors
-- Inner classes
-
-Add one blank line after a method signature that is multiline, i.e.
-
-```java
-@Override
-protected Object invoke(FooBarOperationContext context, AnotherSuperLongName name) {
-  // code here
-}
-```
-
-For inner-classes, extra blank lines around fields and constructors are typically not
-added as the inner class is already separated by 2 lines, unless the inner class is
-more substantial in which case the 2 extra lines could still help with readability.
-
-## Class declaration
-
-Try as much as possible to put the `implements`, `extends` section of a class declaration on the same line as the class itself.
-
-Order the classes so that the most important comes first.
-
-## Naming
-
-### Constant names
+#### Constant names
 
 Constant names use `CONSTANT_CASE`: all uppercase letters, with words separated by underscores.
 
@@ -190,11 +78,32 @@ private static final ThreadLocal<Executor> executorHolder = new ThreadLocal<Exec
 private static final Set<String> internalAnnotationAttributes = new HashSet<String>();
 ```
 
-### Variable names
+#### Variable names
 
 Avoid using single characters as variable names. For instance prefer `Method method` to `Method m`.
 
-## Programming Practices
+### Java source file organization
+
+The following governs how the elements of a source file are organized:
+
+1. static fields
+1. normal fields
+1. constructors
+1. (private) methods called from constructors
+1. static factory methods
+1. getters and setters
+1. method implementations coming from interfaces
+1. private or protected templates that get called from method implementations coming from interfaces
+1. other methods
+1. `equals`, `hashCode`, and `toString`
+
+Note that private or protected methods called from method implementations should be placed immediately below the methods where they're used. In other words if there 3 interface method implementations with 3 private methods (one used from each), then the order of methods should include 1 interface and 1 private method in sequence, not 3 interface and then 3 private methods at the bottom.
+
+Above all, the organization of the code should feel _natural_.
+
+### Class declaration
+
+Order the classes in _implements_ so that the most important comes first.
 
 ### File history
 
@@ -210,20 +119,7 @@ Choose wisely where to add a new setter method; it should not be simply added at
 
 ### Ternary Operator
 
-Wrap the ternary operator within parentheses, i.e. `return (foo != null ? foo : "default");`
-
-Also make sure that the _not null_ condition comes first.
-
-### Null Checks
-
-Use the `org.springframework.util.Assert.notNull` static method to check that a method argument is not `null`. Format the exception message so that the name of the parameter comes first with its first character capitalized, followed by "_must not be null_". For instance
-
-```java
-public void handle(Event event) {
-    Assert.notNull(event, "Event must not be null");
-    //...
-}
-```
+Make sure that the _not null_ condition comes first.
 
 ### Use of @Override
 
@@ -323,8 +219,6 @@ The following are additional general rules to apply when writing Javadoc:
 ### Testing Framework
 
 Tests must be written using JUnit Jupiter (a.k.a., JUnit 5).
-
-The only exceptions to the above rule are test classes in the `spring-test` module that specifically test Spring's integration with JUnit 4 and TestNG.
 
 ### Naming
 

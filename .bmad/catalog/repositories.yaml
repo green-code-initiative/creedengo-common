@@ -1,0 +1,112 @@
+version: 1
+updated_at: 2026-06-30
+hub_repository: creedengo-common
+
+repositories:
+  - id: creedengo-common
+    type: hub
+    role: "BMad templates/workflows source of truth (process only, no shared runtime libs)"
+    owner: "@core-team"
+    default_branch: main
+
+  - id: creedengo-rules-specifications
+    type: governance
+    role: "Rule ideation, lifecycle and cross-repo epic orchestration"
+    owner: "@rules-team"
+    default_branch: main
+
+  - id: creedengo-integration-test
+    type: validation
+    role: "Cross-repository integration and compatibility matrix validation"
+    owner: "@qa-team"
+    default_branch: main
+
+  - id: creedengo-csharp
+    type: core
+    role: "Core C# module providing shared linter foundation and contracts"
+    owner: "@csharp-core-team"
+    default_branch: main
+
+  - id: creedengo-csharp-sonarqube
+    type: plugin
+    role: "SonarQube plugin for C# based on creedengo-csharp core linter"
+    owner: "@csharp-team"
+    default_branch: main
+
+  - id: creedengo-flutter-mobile
+    type: plugin
+    role: "SonarQube plugin for Flutter mobile codebases"
+    owner: "@flutter-team"
+    default_branch: main
+
+  - id: creedengo-android-java
+    type: plugin
+    role: "SonarQube plugin for Android Java"
+    owner: "@android-java-team"
+    default_branch: main
+
+  - id: creedengo-android-kotlin
+    type: plugin
+    role: "SonarQube plugin for Android Kotlin"
+    owner: "@android-kotlin-team"
+    default_branch: main
+
+  - id: creedengo-ios
+    type: plugin
+    role: "SonarQube plugin for iOS projects"
+    owner: "@ios-team"
+    default_branch: main
+
+  - id: creedengo-dashboard
+    type: plugin
+    role: "Dashboard and reporting surfaces for Creedengo rules"
+    owner: "@dashboard-team"
+    default_branch: main
+
+  - id: creedengo-java
+    type: plugin
+    role: "SonarQube plugin for Java"
+    owner: "@java-team"
+    default_branch: main
+
+  - id: creedengo-php
+    type: plugin
+    role: "SonarQube plugin for PHP"
+    owner: "@php-team"
+    default_branch: main
+
+  - id: creedengo-python
+    type: plugin
+    role: "SonarQube plugin for Python"
+    owner: "@python-team"
+    default_branch: main
+
+  - id: creedengo-javascript
+    type: plugin
+    role: "SonarQube plugin for JavaScript"
+    owner: "@javascript-team"
+    default_branch: main
+
+  - id: creedengo-kotlin
+    type: plugin
+    role: "SonarQube plugin for Kotlin"
+    owner: "@kotlin-team"
+    default_branch: main
+
+  - id: creedengo-rust
+    type: plugin
+    role: "SonarQube plugin for Rust"
+    owner: "@rust-team"
+    default_branch: main
+
+  - id: creedengo-html
+    type: plugin
+    role: "SonarQube plugin for HTML"
+    owner: "@html-team"
+    default_branch: main
+
+  - id: creedengo-infra
+    type: plugin
+    role: "Infrastructure and delivery repository for platform operations"
+    owner: "@infra-team"
+    default_branch: main
