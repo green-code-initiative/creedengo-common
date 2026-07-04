@@ -7,6 +7,7 @@
     - [HOWTO install SonarQube dev environment](#howto-install-sonarqube-dev-environment)
       - [Requirements](#requirements-1)
       - [Start SonarQube (if first time)](#start-sonarqube-if-first-time)
+        - [Errors](#errors)
       - [Configuration SonarQube](#configuration-sonarqube)
         - [Change password](#change-password)
         - [Check plugins installation](#check-plugins-installation)
@@ -20,7 +21,7 @@
       - [Maintainer, write permission](#maintainer-write-permission)
       - [Contributor, NO write permissions](#contributor-no-write-permissions)
     - [HOWTO debug a rule (with logs)](#howto-debug-a-rule-with-logs)
-    - [HOWTO Depreciate an existing rule](#howto-depreciate-an-existing-rule)
+    - [HOWTO Deprecate an existing rule](#howto-deprecate-an-existing-rule)
       - [STEP 1 : deprecate rule](#step-1--deprecate-rule)
       - [STEP 2 : remove rule](#step-2--remove-rule)
     - [HOWTO manage license inside code](#howto-manage-license-inside-code)
@@ -31,22 +32,20 @@
   - [HOWTO publish new release on SonarQube Marketplace](#howto-publish-new-release-on-sonarqube-marketplace)
     - [New release from scratch](#new-release-from-scratch)
     - [New release of existing plugin](#new-release-of-existing-plugin)
-  - [HOWTO publish a new version of creedengo-rules-specifications on Maven Central](#howto-publish-a-new-version-of-creedengo-rules-specifications-on-maven-central)
+  - [HOWTO publish a new version of a plugin in SonarQube Marketplace](#howto-publish-a-new-version-of-a-plugin-in-sonarqube-marketplace)
     - [Requirements](#requirements-2)
+    - [Give a new Pull Request to SonarSource](#give-a-new-pull-request-to-sonarsource)
+    - [Automatic publish on SonarQube Marketplace](#automatic-publish-on-sonarqube-marketplace)
+  - [HOWTO publish a new version of creedengo-rules-specifications and and creedengo-integration-test on Maven Central](#howto-publish-a-new-version-of-creedengo-rules-specifications-and-and-creedengo-integration-test-on-maven-central)
+    - [Requirements](#requirements-3)
     - [Maven Central publish process](#maven-central-publish-process)
 - [CONFIGURATION](#configuration)
   - [HOWTO configure publish system on Maven Central](#howto-configure-publish-system-on-maven-central)
     - [Update GPG Maven Central keys](#update-gpg-maven-central-keys)
       - [What is GPG Maven Central keys ?](#what-is-gpg-maven-central-keys-)
-      - [How to install and use GPG ? METHOD 1 : with "GPG KeyChain" software (MAC OS)](#how-to-install-and-use-gpg--method-1--with-gpg-keychain-software-mac-os)
-      - [How to install and use GPG ? METHOD 2 : command line tool](#how-to-install-and-use-gpg--method-2--command-line-tool)
-        - [Why change these variables ?](#why-change-these-variables-)
+      - [How to install and use GPG (command line tool)](#how-to-install-and-use-gpg-command-line-tool)
         - [How to generate new values](#how-to-generate-new-values)
       - [Update Github Secrets](#update-github-secrets)
-    - [Update OSSRH token](#update-ossrh-token)
-      - [What is OSSRH token ?](#what-is-ossrh-token-)
-      - [Why change these variables ?](#why-change-these-variables--1)
-      - [How to generate new values and update Github Secrets ?](#how-to-generate-new-values-and-update-github-secrets-)
 - [CONTACT](#contact)
   - [HOWTO contact the team](#howto-contact-the-team)
   - [Feedbacks](#feedbacks)
@@ -78,6 +77,11 @@ Maven will download the required dependencies.
 ```
 
 Each plugin is generated in its own `<plugin>/target` directory, but they are also copied to the `lib` directory.
+
+Next, check the tests (unit tests and integration tests) are ok :
+```sh
+mvn verify
+```
 
 ### HOWTO install SonarQube dev environment
 
@@ -111,6 +115,13 @@ If there is only postgres, check the logs:
 ./tool_docker-logs.sh
 ```
 
+Wait until "Sonarqube is operational" log appears.
+And next, your SonarQube instance is ready to use.
+
+You can now type in "CTRL-C" to exit logs.
+
+##### Errors
+
 If you have this error on run:
 `web_1 | [1]: max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]`
 you can allocate more virtual memory:
@@ -132,20 +143,22 @@ sysctl -w vm.max_map_count=262144
 
 ##### Change password
 
-- go to your SonarQube homepage `http://localhost:XXXXX/` (`XXXX` : external docker port used. you can get it when you list availables Docker containers)
+- go to your SonarQube homepage `http://localhost:XXXXX/` (`XXXX` : external docker port used. You can get it when you list available Docker containers)
 - use default credentials : `admin`/ `admin`
-- the first time after first connexion, you are suggested to change `admin` password
+- the first time after first connection, you are suggested to change `admin` password
 
 ##### Check plugins installation
 
 - go to "Adminitration" tab
 - go to "Marketplace" sub-tab
-- go bottom, and clic on "Installed" sub-tab
+- go bottom, and click on "Installed" sub-tab
 - check here, if you have creedengo plugins displayed with a SNAPSHOT version
 
 ##### Generate access token
 
-When you are connected, generate a new token on `My Account -> Security -> Generate Tokens`
+When you are connected,
+- generate a new token on `My Account -> Security -> Generate Tokens` with "User token" type
+- copy it for following steps
 
 ![Administrator menu](resources/adm-menu.png)
 ![Security tab](resources/security-tab.png)
@@ -215,13 +228,13 @@ Result : JAR files (one per plugin) will be copied in `lib` repository after bui
 
 ### HOWTO develop in open-source mode
 
-There is two ways to develop in an open-source project :
-- you are one official `maintener`
-- you are `contributor`
+There are two ways to develop in an open-source project :
+- you are an official `maintainer`
+- you are a `contributor`
 
 #### Maintainer, write permission
 
-If you are an official `maintener` identified in the project, you are in a special team with write permissions.
+If you are an official `maintainer` identified in the project, you are in a special team with write permissions.
 Thus you can :
 - create branches and commit directly inside
 - push code directly on project (by the PR way)
@@ -229,9 +242,9 @@ Thus you can :
 
 #### Contributor, NO write permissions
 
-If ou are new (or regular) contributor, you don't have specific write permission but only read permission.
+If you are a new (or regular) contributor, and you don't have specific write permissions but only read permissions.
 If you want to contribute to the project, you must use the FORK / Pull Request (PR) system.
-But don't worry, if you are a regular contributor, project core-team members evaluates regularly some contributors to be maintainers !!!
+But don't worry, if you are a regular contributor, project core-team members evaluates, on a regular basis, some contributors to be maintainers !!!
 
 To contribute with FORK / PR system, you have to :
 - create a fork of the original project (by clicking on `Create a new fork` button, inside top-right `fork` menu)
@@ -243,10 +256,10 @@ To contribute with FORK / PR system, you have to :
   - if your fork is recently created, you can see in the status information that your forked project is synchronized
   - if not "synchronized", you can click on "Sync fork" to update your forked project from the original project
 - create a new local branch to begin development
-- once development done, you can commit an push your work to your github forked project
+- once development done, you can commit and push your work to your github forked project
 - once all is ok, you can create a new Pull Request to original Project by clicking on the new appeared message with "Compare & pull request" button
   - a new PR form is displayed and you can fill it
-- *TIPS* : when you has already created the PR to original project, when you improve your branch of your forked project (with new commits), the PR in original project is automatically updated. Please mark this PR as "Draft" is you are still working on it (top-right link "convert to draft" in PR inside original project)
+- *TIPS* : when you have already created the PR to the original project, and you improve the branch of your forked project (with new commits), the PR in original project is automatically updated. Please mark this PR as "Draft", meaning you are still working on it (top-right link "convert to draft" in PR inside original project)
 
 ### HOWTO debug a rule (with logs)
 
@@ -259,7 +272,7 @@ To contribute with FORK / PR system, you have to :
    - if login and password : `mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.1.2184:sonar -Dsonar.login=MY_LOGIN -Dsonar.password=MY_PASSWORD -X`
 5. logs will appear in console (debug logs will appear if `-X` option is given like above)
 
-### HOWTO Depreciate an existing rule
+### HOWTO Deprecate an existing rule
 
 If you want to deprecate an existing rule, you have to follow 2 steps as described below.
 
@@ -305,7 +318,15 @@ mvn license:format
 
 ### Create a release on DYNAMIC versionning system module
 
-This is the use case for `creedengo` repository
+For now, this is ONLY the use case for following respositories :
+- `creedengo-rules-specifications`
+- `creedengo-integration-test`
+- `creedengo-python`
+- `creedengo-java`
+
+Why dynamic ?
+- because the versionning is dynamic in this repository.
+- no need to execute the 2 shell scripts (and commits / pushes) in "static" way to manage the versionning.
 
 1. **upgrade `CHANGELOG.md`** : add release notes for next release
     1. **Replace `Unreleased` title** with the new version like `Release X.Y.Z` and the date
@@ -316,15 +337,26 @@ This is the use case for `creedengo` repository
     2. **add above an empty `Unreleased`** section with sub-sections (`Added`, `Changed` and `Deleted`)
     3. **add a new section in the list at the bottom** of file with new version
     4. **commit** these modifications
-2. create locally a tag with the previous used version
-   1. **execute `git tag <X.Y.Z>`
-3. push new tag created previously :
+2. **upgrade `README.md`** : upgrade if needed and if version compatibility matrix is described
+3. create locally a tag with the previous used version
+   1. execute `git tag <X.Y.Z>`
+4. push new tag created previously :
    1. locally, **go to and update `main`** branch
    2. **execute `git push --tags`** to push new previously created tag
 
+Next, 2 ways to create JAR files :
+- for internal components (`creedengo-rules-specifications` and `creedengo-integration-test`) :
+   - no need to create a github release with JAR file, only tag is needed
+   - after creating a tag (previous step), launch "publish to maven central" github action to deploy a JAR file on maven central
+   - check publishing in maven central website : accept publish to really publish the JAR file on maven central
+- for sonarqube creedengo plugins, we need to create a github release with JAR file, and then create a PR on SonarSource/sonar-update-center-properties to publish the new version on SonarQube Marketplace
+  - after creating a tag (previous step), launch "tag release" github action to create a github release with JAR file
+  - then, create a PR on SonarSource/sonar-update-center-properties to publish the new version on SonarQube Marketplace (see above process to publish a new version of a plugin in SonarQube Marketplace)
+
+
 ### Create a release on STATIC versionning system module
 
-This is the use case for all plugin repositories except `creedengo` repository
+This is the use case for all plugin repositories except previous listed components on previous dynamic section.
 
 1. IF **new release wanted** is a **major** or **minor** version (`X` or `Y` in `X.Y.Z`)
    1. **THEN** **modify the old version** to the new version in **all XML/YML files**
@@ -338,19 +370,20 @@ This is the use case for all plugin repositories except `creedengo` repository
     2. **add above an empty `Unreleased`** section with sub-sections (`Added`, `Changed` and `Deleted`)
     3. **add a new section in the list at the bottom** of file with new version
     4. **commit** these modifications
-3. prepare locally next release and next snapshot :
+3. **upgrade `README.md`** : upgrade if needed and if version compatibility matrix is described
+4. prepare locally next release and next snapshot :
    1. **execute `tool_release_1_prepare.sh`** script to prepare locally the next release and next SNAPSHOT (creation of 2 new commits and a tag)
    2. DON'T PUSH, just **check locally** these 2 commits and tag
-4. create and push new local branch : 
+5. create and push new local branch :
    1. **execute `tool_release_2_branch.sh`** to create and push a new branch with that release and SNAPSHOT
    2. **check on github** that this new branch is created and pushed
-5. create new github PR :
+6. create new github PR :
    1. on github, **create a new PR** based on this new branch to `main` branch
    2. **check Action** launch and result for this new PR
-6. merge PR
+7. merge PR
    1. **merge PR** on `main` branch with `Create a merge commit` option
    2. **check Action** launch and result on `main` branch
-7. push new tag created previously :
+8. push new tag created previously :
    1. locally, **go to and update `main`** branch
    2. **execute `git push --tags`** to push new previously created tag
    3. **check Action** launch and result on new tag
@@ -396,16 +429,38 @@ Examples :
 - documentation : [README.md](https://github.com/SonarSource/sonar-update-center-properties/blob/master/README.md)
 - example : [PR example](https://github.com/SonarSource/sonar-update-center-properties/pull/468)
 
-## HOWTO publish a new version of creedengo-rules-specifications on Maven Central
+## HOWTO publish a new version of a plugin in SonarQube Marketplace
+
+### Requirements
+
+You need a new release version of the plugin available on GitHub (with a tag).
+
+### Give a new Pull Request to SonarSource
+
+Next, we need to create a new Pull Request on [SonarSource/sonar-update-center-properties](https://github.com/SonarSource/sonar-update-center-properties) like this example : [PR example](https://github.com/SonarSource/sonar-update-center-properties/pull/687).
+
+Some rules to respect for a new PR :
+- update "sqs" (SonarQube Developer Edition) and "sqcb" (SonarQube Community Build) fields
+- only the last version must use "LATEST" value for sqs and sqcb fields
+- use [download link](https://www.sonarsource.com/products/sonarqube/downloads/) to get versions value
+  - sqs (SonarQube Developer Edition)
+  - sqcb (SonarQube Community Build)
+  - sqversions : deprecated field
+
+### Automatic publish on SonarQube Marketplace
+
+Once this Pull Request is merged, the new version of the plugin will be automatically published on SonarQube Marketplace.
+
+## HOWTO publish a new version of creedengo-rules-specifications and and creedengo-integration-test on Maven Central
 
 ### Requirements
 
 You need write rights to use Maven Central publish process (mainteners or core-team members).
 
-**Create a new release of `creedengo` repository** : please see above [HOWTO create a release](#howto-create-a-release-core-contributor-rights-needed).
+**Create a new release of `creedengo-rules-specifications` and `creedengo-integration-test` repository** : please see above [HOWTO create a release](#howto-create-a-release-core-contributor-rights-needed).
 
 Why create a new release before ?
-Because publish process of `creedengo-rules-specifications` on Maven Central needs a tag on `creedengo` repository.
+Because publish process of `creedengo-rules-specifications` or `creedengo-integration-test` on Maven Central needs a tag on `creedengo-rules-specifications` or `creedengo-integration-test` repository.
 
 ### Maven Central publish process
 
@@ -414,7 +469,10 @@ Because publish process of `creedengo-rules-specifications` on Maven Central nee
 - click on "Run workflow" list button
 - choose a tag version (and not a branch because SNAPSHOT version won't be published on Maven Central)
 - click on "Run workflow" button
-- check launched workflow on Actions tab
+- check launched workflow on Actions tab and wait for success
+- go Maven central web site (https://central.sonatype.com), login and click on "publish" tab
+- wait for the new artifact is uploaded by previous github action process 
+- click on "publish" button
 - 20 minutes later (because of Maven central internal process), check on maven central if new version is published
   - check here : https://central.sonatype.com/artifact/org.green-code-initiative/creedengo-rules-specifications/versions
 
@@ -434,23 +492,7 @@ We have to generate public and private keys, and store them in Github Secrets wi
 
 These GPG keys are stored in Github Secrets available `Settings` tab of the repository, in `Secrets and variables` sub-tab, in `Actions` sub-section.
 
-#### How to install and use GPG ? METHOD 1 : with "GPG KeyChain" software (MAC OS)
-
-Download and install GPG KeyChain software from [GPG Suite](https://gpgtools.org/)
-Launch GPG KeyChain software and follow these steps :
-- create a new key pair by clicking on `New` button and feed the form
-  - `Name` : your name
-  - `Email` : your email
-  - `Passphrase` / `password` : a passphrase to protect your private key
-  - `expiration date` : never
-  - other options : default values
-- publish your public key to a key server by clicking on `Send` button
-  - (if you open settings option menu, you can see that key server is `hkps://keys.openpgp.org`)
-- get public key (and private key if needed), by clicking on `Export` button
-  - you can export public key to a local file (with `.asc` extension)
-  - you can also export private key if option checked in export form
-
-#### How to install and use GPG ? METHOD 2 : command line tool
+#### How to install and use GPG (command line tool)
 
 Values are generated on local machine with "gpg" command line tool.
 
@@ -458,11 +500,20 @@ on MAC OS (for the moment) :
 
 - `brew install gpg` to install tool
 - `gpg --version` to check version of GPG tool
-- `gpg --gen-key` to generate private and public keys : WARNING, you need to remember passphrase used to generate keys
-- `gpg --list-keys` to list keys (and display expiration date)
-- `gpg --keyserver keyserver.ubuntu.com --send-keys <MY_PUBLIC_KEY>` to send public key to one fo web key servers : MANDATORY to publish on Maven Central
-- `gpg --keyserver keyserver.ubuntu.com --recv-keys <MY_PUBLIC_KEY>` to get public key from keyserver : TO check if our public key is ok and known by keyserver
-- `gpg --output private.pgp --armor --export-secret-key "<MY_PUBLIC_KEY>"` to export private key to a local file
+- `gpg --full-generate-key` to generate private and public keys : WARNING, you need to remember passphrase used to generate keys
+  - Key type : RSA and RSA
+  - Key size : 4096 (recommended for Maven Central)
+  - Validity : 0 (no expiration)
+  - Confirm with "y"
+  - Name : your name
+  - E-mail : associated email for Maven Central account
+  - Comment : keep empty or add a comment
+  - Confirm with O (for "Okay")
+  - Give strong passphrase
+- `gpg --list-secret-keys --keyid-format LONG` to list keys (and display expiration date) with ID
+  - key ID is the string after "rsa4096/" (for example : ABCD1234EFGH5678)
+- `gpg --export-secret-keys --armor VOTRE_ID_DE_CLE | pbcopy`
+  - export the private key and copy it to clipboard with armored format
 
 For information, version of GPG command line tool :
 ```sh
@@ -484,18 +535,12 @@ Hachage : SHA1, RIPEMD160, SHA256, SHA384, SHA512, SHA224
 Compression : Non compressé, ZIP, ZLIB, BZIP2
 ```
 
-##### Why change these variables ?
-
-We can check expiration date with `gpg --list-keys` command.
-Current keys are valid until **2026-08-07**.
-If we want to upgrade these keys, we need to generate new ones and reconfigure Github Secrets.
-
 ##### How to generate new values
 
-1. Generate new keys with `gpg --gen-key` command : we need to give a passphrase (you can give old one)
-2. Send public key to keyserver with `gpg --keyserver keyserver.ubuntu.com --send-keys <MY_PUBLIC_KEY>` command
-3. Check and get public key from keyserver with `gpg --keyserver keyserver.ubuntu.com --recv-keys <MY_PUBLIC_KEY>` command
-4. Export private key to a local `private.pgp` file with `gpg --output private.pgp --armor --export-secret-key "<MY_PUBLIC_KEY>"`
+1. Generate new keys with `gpg --full-generate-key` command : we need to give a passphrase (you can give old one)
+2. Export public key with `gpg --export --armor KEY_ID > public-key.asc` command
+3. Manual publish of public key on a keyserver website "https://keyserver.ubuntu.com" : copy the content of `public-key.asc` file and paste it on "Submit a key" page of keyserver website
+4. Check and get public key on website with search on your name
 
 #### Update Github Secrets
 
@@ -503,34 +548,6 @@ If we want to upgrade these keys, we need to generate new ones and reconfigure G
 2. Paste this content in `MAVEN_GPG_PRIVATE_KEY` variable in Github Secrets on the current repository (Secrets and variables / Actions / Repository secrets)
 3. Paste the passphrase used in previous step, in `MAVEN_GPG_PASSPHRASE` variable in Github Secrets on the current repository (Secrets and variables / Actions / Repository secrets)
 4. Check below OSSHR token process and then Check publish process with a new release version (see above [HOWTO configure publish process on Maven Central](#howto-publish-a-new-version-of-creedengo-rules-specifications-on-maven-central))
-
-### Update OSSRH token
-
-#### What is OSSRH token ?
-
-`OSSRH_TOKEN` and `OSSRH_USERNAME` are used for communication between Github and Sonatype Nexus system for publish process to Maven Central.
-Nexus URL : https://s01.oss.sonatype.org/
-
-These variables are stored in Github Secrets available `Settings` tab of `creedengo` repository (Secrets and variables / Actions / Repository secrets)
-
-#### Why change these variables ?
-
-Values are get from a specific Sonatype Nexus account.
-
-Actually, `creedengo` Sonatype Nexus account was used to generate values corresponding to `OSSRH_TOKEN` and `OSSRH_USERNAME` variables.
-
-If we want use another account, we need to change these values by generating new ones on this new account.
-
-#### How to generate new values and update Github Secrets ?
-
-1. Go to [Sonatype Nexus](https://s01.oss.sonatype.org/)
-2. Login with account (ex : `gci`)
-3. Go to `Profile` tab
-4. Go to `User Token` sub-tab present in top list (`Summary` value is selected by default)
-5. Click on `Access User Token` button
-6. New values will be generated and displayed
-7. Copy these values and paste them in Github Secrets in `creedengo` repository, respectively in `OSSRH_TOKEN` variable (the password) and `OSSRH_USERNAME` variable (the username)
-8. Check publish process with a new release version (see above [HOWTO configure publish process on Maven Central](#howto-publish-a-new-version-of-creedengo-rules-specifications-on-maven-central))
 
 # CONTACT
 

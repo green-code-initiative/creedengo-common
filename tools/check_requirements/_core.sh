@@ -25,6 +25,13 @@ while IFS="=" read -r key value || [ -n "$key" ]; do
     declare "$key=$value"
 done < config.txt
 
+# Gestion du mode debug via option --debug
+for arg in "$@"; do
+  if [[ "$arg" == "--debug" ]]; then
+    export DEBUG=1
+  fi
+done
+
 ### display debug logs if DEBUG enabled
 ### $1 : message to log
 debug() {
@@ -37,92 +44,100 @@ debug() {
 ### $1 : the command to check
 function check_installation() {
 
-  declare -a command="$1"
+  debug "METHODE check_installation / param 1 : $1"
 
-  declare -a res=`$command 2>/dev/null 1>/dev/null; echo $?`
+  declare -a command="$1"
+  declare -a full_command="$command 2>/dev/null 1>/dev/null; echo $?"
+
+  eval "$full_command" 2>/dev/null 1>/dev/null
+  declare -a res=$?
   if [[ $res == 0 ]]; then
     echo -e "   ✅ installation"
   else
     echo -e "   ❌ installation : please ${PINK}check or install tool${NC}"
   fi
-  debug "command for check = \"$command 2>/dev/null 1>/dev/null; echo \$?\""
+
+  debug "command for check = \"$full_command\""
 
 }
 
-### launch requirements checks (command and min version)
-### $1 : java class version to check
-### $2 : the minimum java class version
-### $3 : the minimum java version
+# Fonction pour comparer deux versions pas forcément de type entier mais avec des "." (retourne 0 si v1 >= v2, 1 sinon)
+version_ge() {
+  [ "$1" = "$2" ] && return 0
+  [ "$(printf '%s\n' "$1" "$2" | sort -V | head -n1)" = "$2" ]
+}
+
+# Fonction pour comparer deux versions pas forcément de type entier mais avec des "." (retourne 0 si v1 <= v2, 1 sinon)
+version_le() {
+  [ "$1" = "$2" ] && return 0
+  [ "$(printf '%s\n' "$1" "$2" | sort -V | tail -n1)" = "$2" ]
+}
+
+# Fonction générique pour vérifier les versions min et max
+# $1 : version courante
+# $2 : borne de version (min ou max)
+# $3 : type de comparaison ("min" ou "max")
+# $4 : label pour affichage (optionnel)
+# $5 : version associée pour affichage (optionnel)
+function check_version_generic() {
+  local current_version="$1"
+  local bound_version="$2"
+  local compare_type="$3"
+
+  debug "METHODE check_version_generic"
+  debug " - param 1 (current_version) : $current_version"
+  debug " - param 2 (bound_version) : $bound_version"
+  debug " - param 3 (compare_type) : $compare_type"
+
+  local result=1
+
+  if [[ "$compare_type" == "min" ]]; then
+    if version_ge "$current_version" "$bound_version"; then
+      result=0
+    fi
+  elif [[ "$compare_type" == "max" ]]; then
+    if version_le "$current_version" "$bound_version"; then
+      result=0
+    fi
+  fi
+
+  if [[ $result -eq 0 ]]; then
+    echo -e "   ✅ $compare_type version"
+  else
+    echo -e "   ❌ $compare_type version : please ${PINK}check or install good version ${NC}"
+  fi
+
+  echo -e "        (current version : $current_version / $compare_type version : '$bound_version')"
+}
+
+# Refactorisation des fonctions spécifiques pour utiliser la fonction générique
+
 function check_version_min_java() {
-
-  declare -a version_class=$1
-  declare -a version_class_min=$2
-  declare -a version_jdk_min=$3
-
-  if [[ "$version_class_min" -le "$version_class" ]]; then
-    echo -e "   ✅ min version"
-  else
-    echo -e "   ❌ min version : please ${PINK}check or install good version ${NC}"
-  fi
-
-  echo -e "        (current class version : $version_class)"
-  echo -e "        (min class version : '$JAVA_CLASS_VERSION_MIN' / min jdk version : '$JAVA_VERSION_MIN')"
-
+  debug "METHODE check_version_min_java"
+  debug " - param 1 : $1"
+  debug " - param 2 : $2"
+  # check_version_generic "$1" "$2" "min" "class version" "JAVA_CLASS_VERSION_MIN"
+  check_version_generic "$1" "$2" "min"
 }
 
-### launch requirements checks (command and max version)
-### $1 : java class version to check
-### $2 : the maximum java class version
-### $3 : the maximum java version
 function check_version_max_java() {
-
-  declare -a version_class=$1
-  declare -a version_class_max=$2
-  declare -a version_jdk_max=$3
-
-  if [[ "$version_class" -le "$version_class_max" ]]; then
-    echo -e "   ✅ max version"
-  else
-    echo -e "   ❌ max version : please ${PINK}check or install good version ${NC}"
-  fi
-
-  echo -e "        (current class version : $version_class)"
-  echo -e "        (max class version : '$JAVA_CLASS_VERSION_MAX' / max jdk version : '$JAVA_VERSION_MAX')"
-
+  debug "METHODE check_version_max_java"
+  debug " - param 1 : $1"
+  debug " - param 2 : $2"
+  # check_version_generic "$1" "$2" "max" "class version" "JAVA_CLASS_VERSION_MAX"
+  check_version_generic "$1" "$2" "max"
 }
 
-### launch requirements checks (command and min version)
-### $1 : the current version
-### $2 : the minimum version to check
 function check_version_min_maven() {
-
-  declare -a version="$1"
-  declare -a version_min="$2"
-
-  if [[ "$version_min" < "$version" || "$version_min" = "$version" ]]; then
-    echo -e "   ✅ min version"
-  else
-    echo -e "   ❌ min version : please ${PINK}check or install good version ${NC}"
-  fi
-
-  echo -e "        (current version : $version / min version : '$version_min')"
-
+  debug "METHODE check_version_min_maven"
+  debug " - param 1 : $1"
+  debug " - param 2 : $2"
+  check_version_generic "$1" "$2" "min"
 }
 
-### launch requirements checks (command and max version)
-### $1 : the current version
-### $2 : the maximum version to check
 function check_version_max_maven() {
-
-  declare -a version="$1"
-  declare -a version_max="$2"
-
-  if [[ "$version" < "$version_max" || "$version" = "$version_max" ]]; then
-    echo -e "   ✅ max version"
-  else
-    echo -e "   ❌ max version : please ${PINK}check or install good version ${NC}"
-  fi
-
-  echo -e "        (current version : $version / max version : '$version_max')"
-
+  debug "METHODE check_version_max_maven"
+  debug " - param 1 : $1"
+  debug " - param 2 : $2"
+  check_version_generic "$1" "$2" "max"
 }

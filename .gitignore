@@ -1,2 +1,5 @@
 .*
+!.github
 !.gitignore
+!.bmad
+!.bmad/**
