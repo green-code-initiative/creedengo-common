@@ -274,7 +274,7 @@ You will need to clone 3 repos :
   * For a rule that doesn't exist yet, determine an ID (random number between 1000 and 1500) that doesn't yet exist
     * add a JSON metadata file to describe the rule, its remediation cost, its tags, etc. (follow the example of other rules)
     * add the sub-tree structure as described for an already existing rule.
-  * run 'mvn install' on this project to have the dependency in your local maven cache. This command will also generate the html file that's required when your build your sonar plugin.
+  * run `mvn install` on this project to have the dependency in your local maven cache. This command will also generate the html file that's required when you build your sonar plugin.
 * creedengo-{lang} : to implement the rule for a target language
   * change the version number in pom.xml of your sonar project : example for creedengo-java/pom.xml : <creedengo-rules-specifications.version>main-SNAPSHOT</creedengo-rules-specifications.version> to target your local build
   * in the implementation, don't forget to add the @rule(key = “GCIxx”) annotation for Java, PHP, Python
