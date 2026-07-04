@@ -27,10 +27,12 @@ SONAR_URL=http://localhost:$SONAR_PORT
 # new tag to add to rules (tagging tools) or to use for rules added to new profiles created (install_profile tool)
 TAG_ECODESIGN=creedengo
 
-
 #####
 # additional configuration for "install_profile.sh" tool
 #####
+
+# list of rule keys that will be updated with new tag
+RULES_KEYS=java:S1696
 
 # filepath to markdown doc containing rule keys that will be updated with new tag
 FILEPATH_SONAR_RULES_REUSED='./SONAR_RULES_REUSED.md'
