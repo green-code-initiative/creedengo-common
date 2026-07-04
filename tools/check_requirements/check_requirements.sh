@@ -19,14 +19,10 @@ echo -e "***** Docker-compose 🚀"
 check_installation "docker-compose --version"
 
 echo -e "***** Java 🚀"
-# check_installation "javap -version"
-check_installation "java --version"
+check_installation "javac -version"
 
-# class_version=`javap -verbose java.lang.String | grep "major version" | cut -d " " -f5`
-# check_version_min_java "$class_version" "$JAVA_CLASS_VERSION_MIN" "$JAVA_VERSION_MIN"
-# check_version_max_java "$class_version" "$JAVA_CLASS_VERSION_MAX" "$JAVA_VERSION_MAX"
-
-java_full_version=$(java --version 2>&1 | head -n 1 | awk '{print $2}')
+java_full_version=$(javac -version 2>&1 | awk '{print $2}')
+debug "Java version detected: $java_full_version"
 check_version_min_java "$java_full_version" "$JAVA_VERSION_MIN"
 check_version_max_java "$java_full_version" "$JAVA_VERSION_MAX"
 

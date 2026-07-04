@@ -23,7 +23,7 @@ The new profile becomes the default profile for the language.
   - Got **'Admininister: Quality Profiles'** global permission on your account.
 - Check `_config.sh` file :
   - debug mode (`DEBUG` variable) : 0 to disable, 1 to enable
-  - simulation mode (`SIMULATION` variable) : 0 to disable, 1 to enable
+  - simulation mode (`SIMULATION` variable) : 0 to do real calls, 1 to simulate 
   - Sonar token (`SONAR_TOKEN` variable) : put here the new added token previously
   - Sonar URL (`SONAR_URL` variable) : put here your custom Sonar URL ("http://localhost:9000" by default)
   - name of tag to add (`TAG_ECODESIGN` variable) : the name of the new tag to add to a list of rules
@@ -32,7 +32,7 @@ The new profile becomes the default profile for the language.
   - language keys list (string format separated with one comma) (`PROFILES_LANGUAGE_KEYS` variable) : specify here the list of all keys language that you want to add the new creedengo quality profile
   - profiles set as default (`IS_PROFILE_ECODESIGN_DEFAULT` variable) : 1 if we want to set created profiles as default profile for each language, 0 if we don't want
 
-## Local develop Environment
+## Local develop Environment & prerequisites
 
 Differents environment have been used:
 
@@ -87,7 +87,7 @@ Files :
 
 - `install_profile.sh` : create new custom profile
 
-## How does it work ?
+## How to
 
 - change configuration in `_config.sh` file : check requirements above
 - launch `check_tags.sh` to control your rules and tags
