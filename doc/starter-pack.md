@@ -226,7 +226,8 @@ In `creedengo-rules-specifications` repository, here is the content :
 In `creedengo-rules-specifications` repository, declare the new language :
 - inside the rule directory present in `src/main/rules` (ex : `GCI34`) :
   - add a new sub-directory for new language (ex : `python`)
-  - in the new language sub-directory, add the ASCIIDOC file (ex : `GCI34.asciidoc` based on the other ASCIIDOC file)
+  - in the new language sub-directory, add the ASCIIDOC file (ex : `GCI34.asciidoc`)
+  - if needed, you can add a JSON metadata file to override metadata for this language only
 - upgrade `CHANGELOG.md`
 
 #### UPGRADE : new rule (not already existing)
